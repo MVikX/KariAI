@@ -1,0 +1,68 @@
+app:
+  name: "NutriAI"
+
+common:
+  ok: "OK"
+  cancel: "Cancel"
+  confirm: "Confirm"
+  and: "AND"
+
+auth:
+  sign_in: "Sign In"
+  sign_up: "Sign Up"
+  or_continue_with: "or continue with"
+  email: "Email"
+  password: "Password"
+  forgot_password: "Forgot your password?"
+  confirm_password: "Confirm Password"
+  continue_btn: "Continue"
+  login_with_google: "Sign in with Google"
+  login_with_apple: "Sign in with Apple"
+  login_with_telegram: "Sign in with Telegram"
+  already_have_account: "Already have an account?"
+  no_account: "Don’t have an account?"
+
+validation:
+  invalid_email: "Invalid email format"
+  empty_field: "Field cannot be empty"
+  short_password: "Password is too short"
+  passwords_not_match: "Passwords do not match"
+  weak_password: "Password must be at least 8 characters long, contain both letters and numbers, and must not be too simple"
+
+assistant:
+  title: "AI Assistant"
+  input_placeholder: "Ask your question..."
+
+home:
+  hello: "Welcome back"
+  today: "Today"
+  calories: "Calories"
+  water: "Water"
+  steps: "Steps"
+  start_chat: "Start Chat"
+  your_progress: "Your Progress"
+
+history:
+  title: "History"
+  daily: "Daily"
+  monthly: "Monthly"
+  no_data: "No data"
+
+legal:
+  accept_privacy_policy: "I accept the Terms of Use and Privacy Policy"
+  terms_accept_prefix: "I accept"
+  terms_link: "Terms of Use"
+  privacy_link: "Privacy Policy"
+
+profile:
+  gender_label: "Gender"
+  gender_men: "Man"
+  gender_woman: "Woman"
+  enter_your_details: "Enter your details"
+  choose_height: "Choose a height"
+  choose_weight: "Choose a weight"
+  height: "Height"
+  weight: "Weight"
+  cm: "cm"
+  kg: "kg"
+  age: "Age"

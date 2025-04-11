@@ -1,0 +1,68 @@
+app:
+  name: "NutriAI"
+
+common:
+  ok: "Ок"
+  cancel: "Отмена"
+  confirm: "Подтвердить"
+  and: "И"
+
+auth:
+  sign_in: "Войти"
+  sign_up: "Регистрация"
+  or_continue_with: "или продолжить через"
+  email: "Эл. почта"
+  password: "Пароль"
+  forgot_password: "Забыли пароль?"
+  confirm_password: "Подтвердите пароль"
+  continue_btn: "Продолжить"
+  login_with_google: "Войти через Google"
+  login_with_apple: "Войти через Apple"
+  login_with_telegram: "Войти через Telegram"
+  already_have_account: "Уже есть аккаунт?"
+  no_account: "Нет аккаунта?"
+
+validation:
+  invalid_email: "Неверный формат почты"
+  empty_field: "Поле не может быть пустым"
+  short_password: "Пароль слишком короткий"
+  passwords_not_match: "Пароли не совпадают"
+  weak_password: "Пароль должен содержать минимум 8 символов, цифры и буквы, и не быть слишком простым"
+
+assistant:
+  title: "AI Ассистент"
+  input_placeholder: "Напишите ваш вопрос..."
+
+home:
+  hello: "Добро пожаловать"
+  today: "Сегодня"
+  calories: "Калории"
+  water: "Вода"
+  steps: "Шаги"
+  start_chat: "Начать чат"
+  your_progress: "Ваш прогресс"
+
+history:
+  title: "История"
+  daily: "Дневная"
+  monthly: "Месячная"
+  no_data: "Нет данных"
+
+legal:
+  accept_privacy_policy: "Я принимаю условия использования и политику конфиденциальности"
+  terms_accept_prefix: "Я принимаю"
+  terms_link: "условия использования"
+  privacy_link: "политику конфиденциальности"
+
+profile:
+  gender_label: "Пол"
+  gender_men: "Мужской"
+  gender_woman: "Женский"
+  enter_your_details: "Введите свои данные"
+  choose_height: "Выберите рост"
+  choose_weight: "Выберете вес"
+  height: "Рост"
+  weight: "Вес"
+  cm: "см"
+  kg: "кг"
+  age: "Возраст"
