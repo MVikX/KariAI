@@ -6,4 +6,5 @@ plugins {
     alias(libs.plugins.composeMultiplatform) apply false
     id("org.jetbrains.kotlin.plugin.compose") version "2.1.10" apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
+    id("dev.icerock.mobile.multiplatform-resources") version libs.versions.moko.resources
 }

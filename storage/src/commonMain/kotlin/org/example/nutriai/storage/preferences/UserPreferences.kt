@@ -5,6 +5,18 @@ interface UserPreferences {
     fun getToken(): String?
     fun clearToken()
 
+    fun saveUserName(userName: String)
+    fun getUserName(): String?
+
+    fun saveBirthDay(day: Int)
+    fun getBirthDay(): Int?
+
+    fun saveBirthMonth(month: Int)
+    fun getBirthMonth(): Int?
+
+    fun saveBirthYear(year: Int)
+    fun getBirthYear(): Int?
+
     fun saveWeight(weight: Double)
     fun getWeight(): Double?
 

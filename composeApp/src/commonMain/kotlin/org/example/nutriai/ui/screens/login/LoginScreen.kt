@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.example.nutriai.resources.NutriTheme
 import org.example.nutriai.shared.presentation.auth.login.LoginViewModel
-import org.example.nutriai.ui.components.SocialButtonsRow
+import org.example.nutriai.ui.components.SocialSignInButtonsRow
 import org.example.nutriai.ui.components.auth.ErrorMessage
 import org.example.nutriai.ui.components.auth.SocialDivider
 import org.example.nutriai.ui.screens.login.components.*
@@ -70,7 +70,7 @@ fun LoginScreen(
                 SocialDivider()
                 Spacer(modifier = Modifier.height(20.dp))
 
-                SocialButtonsRow(
+                SocialSignInButtonsRow(
                     onGoogleClick = onGoogleClick,
                     onTelegramClick = onTelegramClick,
                     onAppleClick = onAppleClick
