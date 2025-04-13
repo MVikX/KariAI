@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.example.nutriai.resources.NutriTheme
 import org.example.nutriai.shared.presentation.auth.register.RegisterViewModel
-import org.example.nutriai.ui.components.SocialButtonsRow
+import org.example.nutriai.ui.components.SocialSignUpButtonsRow
 import org.example.nutriai.ui.components.TermsSection
 import org.example.nutriai.ui.components.auth.ErrorMessage
 import org.example.nutriai.ui.components.auth.SocialDivider
@@ -83,7 +83,7 @@ fun RegisterScreen(
                 SocialDivider()
                 Spacer(modifier = Modifier.height(20.dp))
 
-                SocialButtonsRow(
+                SocialSignUpButtonsRow(
                     onGoogleClick = onGoogleClick,
                     onTelegramClick = onTelegramClick,
                     onAppleClick = onAppleClick

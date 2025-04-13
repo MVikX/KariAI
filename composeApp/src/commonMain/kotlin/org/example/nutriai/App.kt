@@ -1,5 +1,5 @@
 package org.example.nutriai
-
+//TODO отключены экраны
 import androidx.compose.runtime.*
 import localization.AppLanguage
 import localization.LocalStrings
@@ -13,6 +13,17 @@ import org.example.nutriai.ui.screens.main.MainScreen
 import org.example.nutriai.ui.screens.register.RegisterScreen
 import org.example.nutriai.ui.screens.register.userdetails.UserDetailsScreen
 
+
+/**
+ * NutriAI — your personal health & nutrition AI assistant.
+ *
+ * Author: MVikX
+ * Development period: since 06.04.2025 – present...
+ *
+ * Project status: In active development.
+ */
+
+
 enum class AppScreen {
     LOGIN,
     REGISTER,
@@ -22,6 +33,9 @@ enum class AppScreen {
 
 class AppNavigationState {
     var currentScreen by mutableStateOf(AppScreen.LOGIN)
+    //var currentScreen by mutableStateOf(AppScreen.REGISTER)
+    //var currentScreen by mutableStateOf(AppScreen.USER_DETAILS)
+    //var currentScreen by mutableStateOf(AppScreen.MAIN)
 }
 
 @Composable

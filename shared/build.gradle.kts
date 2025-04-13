@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     id("org.jetbrains.kotlin.native.cocoapods")
+    alias(libs.plugins.mokoResources)
 }
 
 kotlin {
@@ -32,6 +33,9 @@ kotlin {
                 implementation(libs.serializationJson)
                 implementation(libs.multiplatformSettings)
 
+                implementation(libs.mokoResources)
+                implementation(libs.kotlinx.datetime)
+
                 implementation(project(":storage"))
             }
         }
@@ -57,6 +61,11 @@ kotlin {
     }
 }
 
+
+android.sourceSets["main"].java.srcDirs("build/generated/moko/androidMain/src")
+android.sourceSets["main"].res.srcDirs("build/generated/moko/androidMain/res")
+
+
 android {
     namespace = "org.example.nutriai.shared"
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
@@ -78,4 +87,10 @@ repositories {
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     mavenCentral()
     maven("https://jitpack.io")
+}
+
+
+
+multiplatformResources {
+    multiplatformResourcesPackage = "org.example.nutriai.shared"
 }

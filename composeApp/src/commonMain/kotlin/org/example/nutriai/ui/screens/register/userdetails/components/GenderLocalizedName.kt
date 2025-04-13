@@ -9,6 +9,5 @@ fun Gender.rawKey(): String = when (this) {
     Gender.FEMALE -> "profile.gender_woman"
 }
 
-// @Composable-версия
 @Composable
 fun Gender.localizedName(): String = t(this.rawKey())

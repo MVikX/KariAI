@@ -51,6 +51,8 @@ kotlin {
 
                 implementation(compose.components.resources)
 
+                implementation("dev.icerock.moko:resources-compose:0.23.0")
+
                 implementation(project(":shared"))
                 implementation(project(":storage"))
             }
@@ -104,6 +106,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.foundationAndroid)
+    implementation(libs.runtime.android)
     debugImplementation(libs.uiTooling)
 }
 
