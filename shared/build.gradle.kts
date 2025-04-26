@@ -12,7 +12,7 @@ kotlin {
     iosSimulatorArm64()
 
     cocoapods {
-        summary = "Shared code for NutriAI iOS"
+        summary = "Shared code for KariAI iOS"
         homepage = "https://your.link"
         version = "1.0.0"
         ios.deploymentTarget = "14.1"
@@ -67,7 +67,7 @@ android.sourceSets["main"].res.srcDirs("build/generated/moko/androidMain/res")
 
 
 android {
-    namespace = "org.example.nutriai.shared"
+    namespace = "org.example.kariai.shared"
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
@@ -92,5 +92,5 @@ repositories {
 
 
 multiplatformResources {
-    multiplatformResourcesPackage = "org.example.nutriai.shared"
+    multiplatformResourcesPackage = "org.example.kariai.shared"
 }
