@@ -74,11 +74,11 @@ kotlin {
 }
 
 android {
-    namespace = "org.example.nutriai"
+    namespace = "org.example.kariai"
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "org.example.nutriai"
+        applicationId = "org.example.kariai"
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
         versionCode = 1

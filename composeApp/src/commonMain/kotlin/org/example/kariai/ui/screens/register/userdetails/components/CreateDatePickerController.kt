@@ -1,0 +1,6 @@
+package org.example.kariai.ui.screens.register.userdetails.components
+
+import androidx.compose.runtime.Composable
+
+@Composable
+expect fun CreateDatePickerController(): DatePickerController

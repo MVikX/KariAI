@@ -1,4 +1,4 @@
-rootProject.name = "NutriAI"
+rootProject.name = "KariAI"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {

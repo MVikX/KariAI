@@ -35,7 +35,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.example.nutriai.storage"
+    namespace = "org.example.kariai.storage"
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
