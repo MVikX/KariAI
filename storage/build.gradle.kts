@@ -35,7 +35,7 @@ kotlin {
 }
 
 android {
-    namespace = "org.example.kariai.storage"
+    namespace = "app.kariai.storage"
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {

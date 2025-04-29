@@ -67,7 +67,7 @@ android.sourceSets["main"].res.srcDirs("build/generated/moko/androidMain/res")
 
 
 android {
-    namespace = "org.example.kariai.shared"
+    namespace = "app.kariai.shared"
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
@@ -92,5 +92,5 @@ repositories {
 
 
 multiplatformResources {
-    multiplatformResourcesPackage = "org.example.kariai.shared"
+    multiplatformResourcesPackage = "app.cariai.kariai.shared"
 }

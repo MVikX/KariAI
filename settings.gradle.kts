@@ -30,3 +30,7 @@ dependencyResolutionManagement {
 include(":composeApp")
 include(":shared")
 include(":storage")
+include("gptchat")
+include("api")
+include("auth")
+include("notifications")

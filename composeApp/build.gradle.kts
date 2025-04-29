@@ -74,11 +74,11 @@ kotlin {
 }
 
 android {
-    namespace = "org.example.kariai"
+    namespace = "app.kariai"
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "org.example.kariai"
+        applicationId = "app.cariai.kariai"
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
         versionCode = 1
