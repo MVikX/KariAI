@@ -37,6 +37,8 @@ kotlin {
                 implementation(libs.kotlinx.datetime)
 
                 implementation(project(":storage"))
+                implementation(project(":auth"))
+                implementation(project(":api"))
             }
         }
 
@@ -92,5 +94,5 @@ repositories {
 
 
 multiplatformResources {
-    multiplatformResourcesPackage = "app.cariai.kariai.shared"
+    multiplatformResourcesPackage = "app.kariai.shared"
 }

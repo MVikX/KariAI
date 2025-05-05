@@ -10,13 +10,11 @@ import app.kariai.composeapp.resources.NutriTheme
 import app.kariai.shared.presentation.auth.login.LoginViewModel
 import app.kariai.composeapp.components.SocialSignInButtonsRow
 import app.kariai.composeapp.components.auth.ErrorMessage
-import app.kariai.composeapp.components.auth.SocialDivider
-import app.kariai.composeapp.ui.screens.login.components.BottomSignUp
 import app.kariai.composeapp.ui.screens.login.components.Title
 
 @Composable
 fun LoginScreen(
-    viewModel: app.kariai.shared.presentation.auth.login.LoginViewModel,
+    viewModel: LoginViewModel,
     onSignInClick: () -> Unit = {},
     onGoogleClick: () -> Unit = {},
     onTelegramClick: () -> Unit = {},
@@ -70,7 +68,7 @@ fun LoginScreen(
                 )
                 Spacer(modifier = Modifier.height(32.dp))
 
-                SocialDivider()
+                //SocialDivider()
                 Spacer(modifier = Modifier.height(20.dp))
 
                 SocialSignInButtonsRow(
@@ -79,10 +77,10 @@ fun LoginScreen(
                     onAppleClick = onAppleClick
                 )
 
-                Spacer(modifier = Modifier.height(32.dp))
+                //Spacer(modifier = Modifier.height(32.dp))
 
 
-                BottomSignUp(onSignUpClick)
+                //BottomSignUp(onSignUpClick)
             }
         }
     }

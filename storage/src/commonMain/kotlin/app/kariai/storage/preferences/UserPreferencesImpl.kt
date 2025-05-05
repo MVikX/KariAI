@@ -17,6 +17,8 @@ class UserPreferencesImpl(
         private const val KEY_WEIGHT = "user_weight"
         private const val KEY_HEIGHT = "user_height"
         private const val KEY_AGE = "user_age"
+
+        private const val KEY_USER_ID = "user_id"
     }
 
     override fun saveToken(token: String) {
@@ -27,6 +29,16 @@ class UserPreferencesImpl(
 
     override fun clearToken() {
         settings.remove(KEY_AUTH_TOKEN)
+    }
+
+    override fun saveUserId(userId: String) {
+        settings[KEY_USER_ID] = userId
+    }
+
+    override fun getUserId(): String? = settings[KEY_USER_ID]
+
+    override fun clearUserId() {
+        settings.remove(KEY_USER_ID)
     }
 
 

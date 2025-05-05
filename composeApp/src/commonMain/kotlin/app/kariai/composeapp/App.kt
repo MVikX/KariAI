@@ -1,6 +1,7 @@
 package app.kariai.composeapp
 //TODO отключены экраны, кнопки входа через..., заглушки для локализации
 import androidx.compose.runtime.*
+import app.kariai.auth.service.AuthService
 import app.kariai.composeapp.localization.AppLanguage
 import app.kariai.composeapp.localization.LocalStrings
 import app.kariai.composeapp.localization.YamlStringsProvider
@@ -31,18 +32,19 @@ enum class AppScreen {
 }
 
 class AppNavigationState {
-    //var currentScreen by mutableStateOf(AppScreen.LOGIN)
+    var currentScreen by mutableStateOf(AppScreen.LOGIN)
     //var currentScreen by mutableStateOf(AppScreen.REGISTER)
     //var currentScreen by mutableStateOf(AppScreen.USER_DETAILS)
-    var currentScreen by mutableStateOf(AppScreen.MAIN)
+    //var currentScreen by mutableStateOf(AppScreen.MAIN)
 }
 
 @Composable
 fun App(
-    loginViewModel: app.kariai.shared.presentation.auth.login.LoginViewModel,
-    registerViewModel: app.kariai.shared.presentation.auth.register.RegisterViewModel,
-    userDetailsViewModel: app.kariai.shared.presentation.auth.register.userdetails.UserDetailsViewModel,
+    loginViewModel: LoginViewModel,
+    registerViewModel: RegisterViewModel,
+    userDetailsViewModel: UserDetailsViewModel,
     navigation: AppNavigationState = remember { AppNavigationState() },
+    authService: AuthService,
 ) {
 
     val language = AppLanguage.RU //Язык
@@ -50,6 +52,10 @@ fun App(
 
     val coroutineScope = rememberCoroutineScope()
     var stringsProvider by remember { mutableStateOf<YamlStringsProvider?>(null) }
+
+    val isAuthorized = remember { mutableStateOf(false) }
+
+    val uiState by loginViewModel.uiState.collectAsState()
 
     LaunchedEffect(language) {
         val yaml = loadYaml(language.code)
@@ -63,18 +69,32 @@ fun App(
         return
     }
 
+    LaunchedEffect(uiState.isUserDetailsCompleted) {
+        when (uiState.isUserDetailsCompleted) {
+            true -> navigation.currentScreen = AppScreen.MAIN
+            false -> navigation.currentScreen = AppScreen.USER_DETAILS
+            null -> {}
+        }
+    }
+
+    val isCompleted by userDetailsViewModel.isCompleted.collectAsState()
+
+    LaunchedEffect(isCompleted) {
+        if (isCompleted) {
+            navigation.currentScreen = AppScreen.MAIN
+        }
+    }
+
+
     CompositionLocalProvider(LocalStrings provides stringsProvider!!) {
         when (navigation.currentScreen) {
             AppScreen.LOGIN -> {
                 LoginScreen(
                     viewModel = loginViewModel,
-                    onSignUpClick = { navigation.currentScreen = AppScreen.REGISTER },
-                    onSignInClick = {
-                        loginViewModel.onLoginClicked()
-                        navigation.currentScreen = AppScreen.MAIN
-                    }, //TODO Нужна проверка токена для входа авторизированного
+                    onSignUpClick = {},
+                    onSignInClick = {},
                     onGoogleClick = {
-
+                        authService.openAuthorization()
                     },
                     onTelegramClick = {
 
@@ -109,7 +129,9 @@ fun App(
                 UserDetailsScreen(
                     viewModel = userDetailsViewModel,
                     onContinueClick = {
-                        navigation.currentScreen = AppScreen.MAIN
+                        userDetailsViewModel.onContinueClick {
+                            navigation.currentScreen = AppScreen.MAIN
+                        }
                     }
                 )
             }

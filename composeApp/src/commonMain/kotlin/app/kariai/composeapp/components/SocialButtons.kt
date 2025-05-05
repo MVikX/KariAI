@@ -15,7 +15,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import app.cariai.kariai.shared.MR
+import app.kariai.shared.MR
 import dev.icerock.moko.resources.compose.painterResource
 import app.kariai.composeapp.localization.t
 import app.kariai.composeapp.utils.PlatformUtils

@@ -1,18 +1,25 @@
 package app.kariai.shared.presentation.auth.register.userdetails
 
+import app.kariai.api.AuthApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.datetime.*
-import app.kariai.shared.presentation.auth.register.userdetails.enums.Gender
 import app.kariai.storage.preferences.UserPreferences
+import app.kariai.storage.userinfo.CompleteDetailsRequest
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 class UserDetailsViewModel(
-    private val preferences: UserPreferences
+    private val preferences: UserPreferences,
+    private val authApi: AuthApi,
 ) {
 
-    private val _uiState = MutableStateFlow(app.kariai.shared.presentation.auth.register.userdetails.UserDetailsUiState())
-    val uiState: StateFlow<app.kariai.shared.presentation.auth.register.userdetails.UserDetailsUiState> = _uiState
+    private val _uiState = MutableStateFlow(UserDetailsUiState())
+    val uiState: StateFlow<UserDetailsUiState> = _uiState
+    val isCompleted = MutableStateFlow(false)
 
     init {
         loadUserData()
@@ -138,5 +145,39 @@ class UserDetailsViewModel(
 
     fun hideBirthDateDialog() {
         _isBirthDateDialogVisible.value = false
+    }
+
+
+    private val viewModelScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+
+    fun onContinueClick(onSuccess: () -> Unit) {
+        viewModelScope.launch {
+            val userID = preferences.getUserId()?: return@launch
+            val state = uiState.value
+
+            val month = state.birthMonth.toString().padStart(2, '0')
+            val day = state.birthDay.toString().padStart(2, '0')
+            val birthDate = "${state.birthYear}-$month-$day"
+
+            val request = CompleteDetailsRequest(
+                name = state.userName,
+                birthDate = birthDate,
+                height = state.height.toDouble(),
+                weight = state.weight,
+                allergies = state.allergies,
+                intolerances = state.intolerances,
+                gender = state.gender?.name,
+                isDetailsCompleted = true
+            )
+
+            try {
+                authApi.completeUserDetails(userID, request)
+                println(" Успешно отправлено. Переходим на MAIN")
+                onSuccess() // ← вот это вызывает переход на экран
+            } catch (e: Exception) {
+                println(" Failed to complete details: ${e.stackTraceToString()}")
+                onSuccess()
+            }
+        }
     }
 }

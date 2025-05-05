@@ -55,6 +55,7 @@ kotlin {
 
                 implementation(project(":shared"))
                 implementation(project(":storage"))
+                implementation(project(":auth"))
             }
         }
 
@@ -78,7 +79,7 @@ android {
     compileSdk = libs.versions.androidCompileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "app.cariai.kariai"
+        applicationId = "app.kariai"
         minSdk = libs.versions.androidMinSdk.get().toInt()
         targetSdk = libs.versions.androidTargetSdk.get().toInt()
         versionCode = 1
