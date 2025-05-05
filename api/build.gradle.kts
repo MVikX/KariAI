@@ -18,11 +18,14 @@ kotlin {
                 implementation(libs.ktorSerializationJson)
                 implementation(libs.coroutines)
                 implementation(libs.serializationJson)
+
+                implementation(project(":storage"))
             }
         }
         val androidMain by getting {
             dependencies {
                 implementation(libs.ktorClientOkhttp)
+                implementation(libs.ktor.client.cio)
             }
         }
         val iosX64Main by getting

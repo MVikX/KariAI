@@ -9,7 +9,7 @@ data class UserDetailsUiState(
     val birthYear: Int = 2000,
     val height: Int = 175,
     val weight: Double = 75.5,
-    val gender: app.kariai.shared.presentation.auth.register.userdetails.enums.Gender? = null,
+    val gender: Gender? = null,
     val allergies: String = "",
     val intolerances: String = "",
 )

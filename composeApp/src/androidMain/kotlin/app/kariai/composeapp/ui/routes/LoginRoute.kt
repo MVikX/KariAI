@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.routes
-
+/*
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
@@ -44,3 +44,5 @@ fun LoginRoute(
         onAppleClick = {},
     )
 }
+
+ */

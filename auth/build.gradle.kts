@@ -17,9 +17,18 @@ kotlin {
                 implementation(libs.serializationJson)
                 implementation(libs.multiplatformSettings)
                 implementation(project(":api"))
+                implementation(project(":storage"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.ktorClientCore)
+                implementation(libs.ktorClientLogging)
+                implementation(libs.ktorContentNegotiation)
+                implementation(libs.ktorSerializationJson)
+                implementation(libs.androidx.browser)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting

@@ -25,4 +25,8 @@ interface UserPreferences {
 
     fun saveAge(age: Int)
     fun getAge(): Int?
+
+    fun saveUserId(userId: String)
+    fun getUserId(): String?
+    fun clearUserId()
 }

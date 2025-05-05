@@ -1,6 +1,9 @@
 package app.kariai.shared.viewmodel
 
 import android.content.Context
+import app.kariai.api.AuthApiImpl
+import app.kariai.api.defaultHttpClient
+import app.kariai.auth.controller.AuthController
 import app.kariai.shared.viewmodel.auth.AndroidLoginViewModel
 import app.kariai.shared.viewmodel.auth.AndroidRegisterViewModel
 import app.kariai.storage.di.provideSettings
@@ -11,7 +14,9 @@ class AndroidViewModelFactory(
 ) : ViewModelFactory {
     override fun createLoginViewModel(): app.kariai.shared.presentation.auth.login.LoginViewModel {
         val prefs = UserPreferencesImpl(provideSettings(context))
-        return AndroidLoginViewModel(prefs).delegate
+        val authApi = AuthApiImpl(defaultHttpClient)
+        val controller = AuthController(authApi)
+        return AndroidLoginViewModel(prefs, controller).delegate
     }
 
     override fun createRegisterViewModel(): app.kariai.shared.presentation.auth.register.RegisterViewModel {
@@ -21,7 +26,8 @@ class AndroidViewModelFactory(
 
     override fun createUserDetailsViewModel(): app.kariai.shared.presentation.auth.register.userdetails.UserDetailsViewModel {
         val prefs = UserPreferencesImpl(provideSettings(context))
-        return app.kariai.shared.presentation.auth.register.userdetails.UserDetailsViewModel(prefs)
+        val authApi = AuthApiImpl(defaultHttpClient)
+        return app.kariai.shared.presentation.auth.register.userdetails.UserDetailsViewModel(prefs, authApi)
     }
 }
 
