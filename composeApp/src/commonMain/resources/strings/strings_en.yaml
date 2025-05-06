@@ -19,9 +19,9 @@ auth:
   login_with_apple: "Sign in with Apple"
   already_have_account: "Already have an account?"
   no_account: "Don’t have an account?"
-  login_with_google: "Войти через Google"
+  login_with_google: "Log in Google"
   signup_with_google: "Зарегистрироваться через Google"
-  login_with_telegram: "Войти через Telegram"
+  login_with_telegram: "Log in Telegram"
   signup_with_telegram: "Зарегистрироваться через Telegram"
 
 validation:
@@ -37,6 +37,7 @@ assistant:
 
 home:
   hello: "Welcome back"
+  hello_in_down: "Your smart AI assistant."
   today: "Today"
   calories: "Calories"
   water: "Water"
@@ -73,3 +74,5 @@ profile:
   birthdate_label: "Date of Birth"
   allergies: "Allergies"
   intolerances: "Intolerances"
+  title_name_user1: "Enter information"
+  title_name_user2: "about yourself"

@@ -46,8 +46,8 @@ class UserDetailsViewModel(
         _uiState.update {
             it.copy(
                 userName = preferences.getUserName() ?: "",
-                weight = preferences.getWeight() ?: 75.5,
-                height = preferences.getHeight() ?: 175,
+                weight = preferences.getWeight() ?: 0.0,
+                height = preferences.getHeight() ?: 0,
                 birthDay = preferences.getBirthDay() ?: 1,
                 birthMonth = preferences.getBirthMonth() ?: 1,
                 birthYear = preferences.getBirthYear() ?: 2000,

@@ -1,58 +1,80 @@
 package app.kariai.composeapp.ui.screens.register.userdetails.components
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import app.kariai.composeapp.localization.t
+import app.kariai.shared.MR
+
 
 @Composable
-fun BodyMetricsSelector(
+fun HeightSelector(
     height: Int,
-    weight: Double,
-    onHeightClick: () -> Unit,
-    onWeightClick: () -> Unit
+    onClick: () -> Unit
 ) {
-    Row(
+    Column(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
-            modifier = Modifier.weight(1f),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = t("profile.height"),
-                style = MaterialTheme.typography.bodyMedium,
-                fontSize = 35.sp,
-            )
-            Spacer(modifier = Modifier.height(8.dp))
+        val content = @Composable {
             MetricBox(
-                value = "$height" + t("profile.cm"),
-                onClick = onHeightClick,
-                modifier = Modifier.fillMaxWidth().height(60.dp)
+                value = "$height${t("profile.cm")}",
+                onClick = onClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp),
+                image = MR.images.height,
+                textKey = t("profile.height")
             )
         }
 
-        Column(
-            modifier = Modifier.weight(1f),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = t("profile.weight"),
-                style = MaterialTheme.typography.bodyMedium,
-                fontSize = 35.sp,
-            )
-            Spacer(modifier = Modifier.height(8.dp))
+        if (height > 0) {
+            AnimatedBorderWrapper(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+            ) {
+                content()
+            }
+        } else {
+            content()
+        }
+    }
+}
+
+@Composable
+fun WeightSelector(
+    weight: Double,
+    onClick: () -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        val content = @Composable {
             MetricBox(
-                value = "$weight" + t("profile.kg"),
-                onClick = onWeightClick,
-                modifier = Modifier.fillMaxWidth().height(60.dp)
+                value = "$weight${t("profile.kg")}",
+                onClick = onClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp),
+                image = MR.images.weight,
+                textKey = t("profile.weight")
             )
+        }
+
+        if (weight > 0.0) {
+            AnimatedBorderWrapper(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp)
+            ) {
+                content()
+            }
+        } else {
+            content()
         }
     }
 }

@@ -21,7 +21,7 @@ import app.kariai.shared.presentation.main.NutritionStats
 fun AssistantOverlay(
     visible: Boolean,
     onDismiss: () -> Unit,
-    nutritionStats: MutableState<app.kariai.shared.presentation.main.NutritionStats>,
+    nutritionStats: MutableState<NutritionStats>,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val targetHeight = if (visible) 540.dp else 0.dp

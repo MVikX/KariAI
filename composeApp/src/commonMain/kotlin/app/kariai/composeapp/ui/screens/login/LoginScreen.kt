@@ -1,5 +1,6 @@
 package app.kariai.composeapp.ui.screens.login
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -11,6 +12,8 @@ import app.kariai.shared.presentation.auth.login.LoginViewModel
 import app.kariai.composeapp.components.SocialSignInButtonsRow
 import app.kariai.composeapp.components.auth.ErrorMessage
 import app.kariai.composeapp.ui.screens.login.components.Title
+import app.kariai.shared.MR
+import dev.icerock.moko.resources.compose.painterResource
 
 @Composable
 fun LoginScreen(
@@ -44,7 +47,9 @@ fun LoginScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Title()
-                Spacer(modifier = Modifier.height(32.dp))
+
+                Spacer(modifier = Modifier.height(45.dp))
+
 /*
                 EmailField(uiState, viewModel)
                 Spacer(modifier = Modifier.height(16.dp))
@@ -66,10 +71,9 @@ fun LoginScreen(
                     message = uiState.errorMessage,
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                 )
-                Spacer(modifier = Modifier.height(32.dp))
 
                 //SocialDivider()
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(5.dp))
 
                 SocialSignInButtonsRow(
                     onGoogleClick = onGoogleClick,

@@ -5,19 +5,25 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Surface
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import app.kariai.composeapp.localization.t
 import app.kariai.composeapp.resources.NutriTheme
 import app.kariai.composeapp.components.common.search.SearchField
 import app.kariai.composeapp.ui.screens.register.userdetails.components.*
+import app.kariai.shared.MR
+import app.kariai.shared.presentation.auth.register.userdetails.UserDetailsViewModel
 
 @Composable
 fun UserDetailsScreen(
-    viewModel: app.kariai.shared.presentation.auth.register.userdetails.UserDetailsViewModel,
+    viewModel: UserDetailsViewModel,
     onContinueClick: () -> Unit
 ) {
     val uiState = viewModel.uiState.collectAsState().value
@@ -31,72 +37,106 @@ fun UserDetailsScreen(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background,
         ) {
+
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 24.dp)
                     .systemBarsPadding()
-                    .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.Center,
+                    .verticalScroll(rememberScrollState())
+                    .padding(10.dp)
             ) {
-                Spacer(modifier = Modifier.height(35.dp))
 
-                Row(
+                Column(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Column(modifier = Modifier.weight(1f)) {
-                        NameInput(
-                            name = uiState.userName,
-                            onClick = { viewModel.showNameDialog() }
-                        )
-                    }
+                    val textsize = 34.sp
 
-                    Column(modifier = Modifier.weight(1f)) {
-                        BirthDateSelector(
-                            day = uiState.birthDay,
-                            month = uiState.birthMonth,
-                            year = uiState.birthYear,
-                            onClick = { viewModel.showBirthDateDialog() }
-                        )
-                    }
+                    Spacer(modifier = Modifier.height(30.dp))
+                    // заголовок
+                    Text(
+                        text = t("profile.title_name_user1"),
+                        style = MaterialTheme.typography.headlineMedium.copy(
+                            fontWeight = FontWeight.ExtraBold,
+                            fontSize = textsize,
+                            lineHeight = 44.sp
+                        ),
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+
+                    Text(
+                        text = t("profile.title_name_user2"),
+                        style = MaterialTheme.typography.headlineMedium.copy(
+                            fontWeight = FontWeight.ExtraBold,
+                            fontSize = textsize,
+                            lineHeight = 44.sp
+                        ),
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
                 }
 
-                Spacer(modifier = Modifier.height(35.dp))
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .systemBarsPadding(),
+                    verticalArrangement = Arrangement.spacedBy(24.dp),
+                    horizontalAlignment = Alignment.Start,
+                ) {
+                    Spacer(modifier = Modifier.height(20.dp))
 
-                GenderSelector(
-                    selectedGender = uiState.gender,
-                    onGenderSelected = { viewModel.updateGender(it) }
-                )
+                    // Имя
+                    NameInput(
+                        name = uiState.userName,
+                        onClick = { viewModel.showNameDialog() }
+                    )
 
-                Spacer(modifier = Modifier.height(35.dp))
+                    // Дата рождения
+                    BirthDateSelector(
+                        day = uiState.birthDay,
+                        month = uiState.birthMonth,
+                        year = uiState.birthYear,
+                        onClick = { viewModel.showBirthDateDialog() }
+                    )
 
-                BodyMetricsSelector(
-                    height = uiState.height,
-                    weight = uiState.weight,
-                    onHeightClick = { viewModel.showHeightPicker() },
-                    onWeightClick = { viewModel.showWeightPicker() },
-                )
+                    // Пол
+                    GenderSelector(
+                        selectedGender = uiState.gender,
+                        onGenderSelected = { viewModel.updateGender(it) }
+                    )
 
-                Spacer(modifier = Modifier.height(35.dp))
+                    // Рост
+                    HeightSelector(
+                        height = uiState.height,
+                        onClick = { viewModel.showHeightPicker() }
+                    )
 
-                SearchField(
-                    label = t("profile.allergies"),
-                    value = uiState.allergies,
-                    onValueChange = { viewModel.updateAllergies(it) }
-                )
 
-                Spacer(modifier = Modifier.height(35.dp))
+                    WeightSelector(
+                        weight = uiState.weight,
+                        onClick = { viewModel.showWeightPicker() }
+                    )
 
-                SearchField(
-                    label = t("profile.intolerances"),
-                    value = uiState.intolerances,
-                    onValueChange = { viewModel.updateIntolerances(it) }
-                )
+                    // Аллергии
+                    SearchField(
+                        label = t("profile.allergies"),
+                        value = uiState.allergies,
+                        onValueChange = { viewModel.updateAllergies(it) },
+                        image = MR.images.alerg,
+                    )
 
-                Spacer(modifier = Modifier.height(35.dp))
+                    // Непереносимости
+                    SearchField(
+                        label = t("profile.intolerances"),
+                        value = uiState.intolerances,
+                        onValueChange = { viewModel.updateIntolerances(it) },
+                        image = MR.images.alerg,
+                    )
 
-                ContinueButton(uiState = uiState, onClick = onContinueClick)
+                    ContinueButton(
+                        uiState = uiState,
+                        onClick = onContinueClick,
+                    )
+                }
             }
         }
     }
@@ -131,7 +171,6 @@ fun UserDetailsScreen(
             }
         )
     }
-
 
     if (isBirthDateDialogVisible) {
         val controller = CreateDatePickerController()

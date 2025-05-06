@@ -1,5 +1,6 @@
 package app.kariai.composeapp.ui.screens.main.components.assistantpanel
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -9,8 +10,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import app.kariai.shared.MR
+import dev.icerock.moko.resources.compose.painterResource
 
 @Composable
 fun AssistantPanel(
@@ -32,11 +36,22 @@ fun AssistantPanel(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "Assistant...",//TODO нужна локализация
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
-                fontSize = 16.sp
-            )
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    painter = painterResource(MR.images.kariai_robot),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .height(30.dp)
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Text(
+                    text = "Assistant...",//TODO нужна локализация
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
+                    fontSize = 16.sp
+                )
+            }
 
             Text(
                 text = "Open", //TODO нужна локализация

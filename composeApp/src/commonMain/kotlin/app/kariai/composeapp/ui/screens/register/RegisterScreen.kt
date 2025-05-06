@@ -17,7 +17,7 @@ import app.kariai.composeapp.ui.screens.register.components.Title
 
 @Composable
 fun RegisterScreen(
-    viewModel: app.kariai.shared.presentation.auth.register.RegisterViewModel,
+    viewModel: RegisterViewModel,
     onRegisterClick: () -> Unit = {},
     onGoogleClick: () -> Unit = {},
     onTelegramClick: () -> Unit = {},

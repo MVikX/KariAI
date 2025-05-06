@@ -11,18 +11,11 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import app.kariai.shared.presentation.main.NutritionStats
-import app.kariai.shared.presentation.main.assistentpanel.ChatMessage
 import app.kariai.composeapp.ui.screens.main.sections.assistantpanel.bubbles.AssistantMessageBubble
 import app.kariai.composeapp.ui.screens.main.sections.assistantpanel.bubbles.UserMessageBubble
 import app.kariai.composeapp.ui.screens.main.sections.assistantpanel.components.MessageInputField
-import app.kariai.composeapp.ui.screens.main.sections.assistantpanel.components.MessageList
 import app.kariai.composeapp.ui.screens.main.sections.assistantpanel.components.SwipeDismissBox
-
-
-
-
-
+import app.kariai.shared.presentation.main.assistentpanel.ChatMessage
 
 
 @Composable
@@ -31,7 +24,7 @@ fun AssistantChatContent(
     onDismissRequest: () -> Unit
 ) {
     var inputText by remember { mutableStateOf("") }
-    val messages = remember { mutableStateListOf<app.kariai.shared.presentation.main.assistentpanel.ChatMessage>() }
+    val messages = remember { mutableStateListOf<ChatMessage>() }
     val focusManager = LocalFocusManager.current
     val coroutineScope = rememberCoroutineScope()
 
@@ -73,10 +66,9 @@ fun AssistantChatContent(
             inputText = inputText,
             onInputTextChange = { inputText = it },
             onSendMessage = { message ->
-                messages.add(app.kariai.shared.presentation.main.assistentpanel.ChatMessage(message, isUser = true))
+                messages.add(ChatMessage(message, isUser = true))
 
-                val typingMessage =
-                    app.kariai.shared.presentation.main.assistentpanel.ChatMessage("TYPING", isUser = false)
+                val typingMessage = ChatMessage("TYPING", isUser = false)
                 messages.add(typingMessage)
 
                 coroutineScope.launch {
@@ -104,7 +96,7 @@ fun AssistantChatContent(
                     """.trimIndent()
 
                     messages.add(
-                        app.kariai.shared.presentation.main.assistentpanel.ChatMessage(
+                        ChatMessage(
                             detailedResponse,
                             isUser = false
                         )
@@ -125,7 +117,7 @@ fun TypingIndicator() {
 
     LaunchedEffect(Unit) {
         while (true) {
-            delay(400L) // каждые 400 миллисекунд
+            delay(400L)
             dotCount = (dotCount % 3) + 1
         }
     }

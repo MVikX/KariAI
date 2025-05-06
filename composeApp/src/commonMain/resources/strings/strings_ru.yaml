@@ -37,6 +37,7 @@ assistant:
 
 home:
   hello: "Добро пожаловать"
+  hello_in_down: "Ваш умный ИИ ассистент - KariAI"
   today: "Сегодня"
   calories: "Калории"
   water: "Вода"
@@ -73,3 +74,5 @@ profile:
   birthdate_label: "Дата рождения"
   allergies: "Аллергии"
   intolerances: "Непереносимости"
+  title_name_user1: "Введите информацию"
+  title_name_user2: "о себе"
