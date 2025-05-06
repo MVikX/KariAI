@@ -39,7 +39,7 @@ fun StatBoxContainer(
                 color = MaterialTheme.colorScheme.surface.copy(alpha = 1f),
                 shape = RoundedCornerShape(15.dp),
             )
-            .padding(30.dp),
+            .padding(25.dp),
         contentAlignment = Alignment.Center
     ) {
         content()

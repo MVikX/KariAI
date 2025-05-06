@@ -11,17 +11,29 @@ import app.kariai.composeapp.components.common.button.GradientButton
 import app.kariai.composeapp.components.common.button.GrayButton
 
 @Composable
-fun ContinueButton(uiState: app.kariai.shared.presentation.auth.register.userdetails.UserDetailsUiState, onClick: () -> Unit) {
-    val isFormValid = uiState.gender != null && !uiState.userName.isNullOrBlank()
+fun ContinueButton(
+    uiState: UserDetailsUiState,
+    onClick: () -> Unit
+) {
+    val isFormValid = uiState.gender != null &&
+            !uiState.userName.isNullOrBlank()
 
     if (isFormValid) {
-        GradientButton(
-            text = t("auth.continue_btn"),
-            onClick = onClick,
+        AnimatedBorderWrapper(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(52.dp)
-        )
+                .height(52.dp),
+            cornerRadius = 16.dp,
+            strokeWidth = 2.dp
+        ) {
+            GradientButton(
+                text = t("auth.continue_btn"),
+                onClick = onClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(52.dp)
+            )
+        }
     } else {
         GrayButton(
             text = t("auth.continue_btn"),

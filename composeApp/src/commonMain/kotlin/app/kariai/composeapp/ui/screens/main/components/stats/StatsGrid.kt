@@ -5,11 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.dp
+import app.kariai.shared.MR
 import app.kariai.shared.presentation.main.NutritionStats
 
 @Composable
 fun StatsGrid (
-    stats: app.kariai.shared.presentation.main.NutritionStats,
+    stats: NutritionStats,
     modifier: Modifier = Modifier,
     onDistanceClick: (Offset) -> Unit,
     onStepsClick: (Offset) -> Unit,
@@ -30,21 +31,24 @@ fun StatsGrid (
                 title = "Distance",
                 value = "25 km",
                 modifier = Modifier.weight(1f),
-                onClick = onDistanceClick
+                onClick = onDistanceClick,
+                image = MR.images.distance,
             )
 
             StatBox(
                 title = "Steps",
                 value = "18 000",
                 modifier = Modifier.weight(1f),
-                onClick = onStepsClick
+                onClick = onStepsClick,
+                image = MR.images.steps
             )
 
             StatBox(
                 title = "Goals",
                 value = "2",
                 modifier = Modifier.weight(1f),
-                onClick = onGoalsClick
+                onClick = onGoalsClick,
+                image = MR.images.goals,
             )
         }
 
@@ -56,21 +60,24 @@ fun StatsGrid (
                 title = "Carbs",
                 value = "${stats.carbs} g",
                 modifier = Modifier.weight(1f),
-                onClick = onCarbsClick
+                onClick = onCarbsClick,
+                image = MR.images.carbs,
             )
 
             StatBox(
                 title = "Protein",
                 value = "${stats.proteins} g",
                 modifier = Modifier.weight(1f),
-                onClick = onProteinClick
+                onClick = onProteinClick,
+                image = MR.images.protein,
             )
 
             StatBox(
                 title = "Fat",
                 value = "${stats.fats} g",
                 modifier = Modifier.weight(1f),
-                onClick = onFatClick
+                onClick = onFatClick,
+                image = MR.images.fat,
             )
         }
     }

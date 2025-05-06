@@ -47,7 +47,8 @@ fun App(
     authService: AuthService,
 ) {
 
-    val language = AppLanguage.RU //Язык
+    //val language = AppLanguage.RU
+    val language = AppLanguage.RU
 
 
     val coroutineScope = rememberCoroutineScope()

@@ -1,5 +1,6 @@
 package app.kariai.composeapp.ui.screens.register.userdetails.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -13,22 +14,54 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.kariai.composeapp.localization.t
+import app.kariai.shared.MR
+import dev.icerock.moko.resources.compose.painterResource
 
 @Composable
 fun NameInput(
     name: String,
     onClick: () -> Unit,
 ) {
-    Column {
-        Text(
-            text = t("profile.name_label"),
-            style = MaterialTheme.typography.bodyMedium,
-            fontSize = 35.sp,
-            modifier = Modifier
-                .align(Alignment.Start)
-                .padding(bottom = 8.dp)
-        )
+    val hasName = name.isNotBlank()
 
+    val content = @Composable {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp)
+                .clickable { onClick() }
+                .padding(horizontal = 16.dp),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(MR.images.name),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .height(40.dp)
+                        .padding(end = 10.dp)
+                )
+
+                Text(
+                    text = if (hasName) name else t("profile.name_placeholder"),
+                    fontSize = 40.sp,
+                    color = if (hasName) MaterialTheme.colorScheme.onSurface else Color.Gray
+                )
+            }
+        }
+    }
+
+    if (hasName) {
+        AnimatedBorderWrapper(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(60.dp)
+        ) {
+            content()
+        }
+    } else {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -36,17 +69,10 @@ fun NameInput(
                 .background(
                     color = MaterialTheme.colorScheme.surface.copy(alpha = 1f),
                     shape = RoundedCornerShape(12.dp),
-                )
-                .clickable { onClick() }
-                .padding(horizontal = 16.dp),
+                ),
             contentAlignment = Alignment.Center
         ) {
-            val hasName = name.isNotBlank()
-            Text(
-                text = if (hasName) name else t("profile.name_placeholder"),
-                fontSize = 30.sp,
-                color = if (hasName) MaterialTheme.colorScheme.onSurface else Color.Gray
-            )
+            content()
         }
     }
 }
