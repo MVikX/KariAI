@@ -18,7 +18,10 @@ class AuthApiImpl(private val client: HttpClient) : AuthApi {
         }.body()
     }
 
-    override suspend fun completeUserDetails(userId: String, request: CompleteDetailsRequest): UserSessionDto {
+    override suspend fun completeUserDetails(
+        userId: String,
+        request: CompleteDetailsRequest
+    ): UserSessionDto {
         return client.post("https://kariai.app/user/details") {
             header("X-User-ID", userId)
             contentType(ContentType.Application.Json)

@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import app.kariai.composeapp.resources.NutriTheme
 
 @Composable
-fun StepsOverlayScreen(onClose: () -> Unit) {
+fun ActivityOverlayScreen(onClose: () -> Unit) {
     NutriTheme {
         Box(
             modifier = Modifier
@@ -24,7 +24,7 @@ fun StepsOverlayScreen(onClose: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = "шаги заглушка", //TODO заглушка шагов
+                    text = "активность заглушка", //TODO заглушка шагов
                     style = MaterialTheme.typography.headlineLarge
                 )
             }

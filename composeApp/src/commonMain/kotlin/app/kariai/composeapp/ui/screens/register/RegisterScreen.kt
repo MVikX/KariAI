@@ -20,7 +20,7 @@ fun RegisterScreen(
     viewModel: RegisterViewModel,
     onRegisterClick: () -> Unit = {},
     onGoogleClick: () -> Unit = {},
-    onTelegramClick: () -> Unit = {},
+    onFacebookClick: () -> Unit = {},
     onAppleClick: () -> Unit = {},
     onSignInClick: () -> Unit = {},
 ) {
@@ -91,7 +91,7 @@ RegisterButton(uiState) {
 
                 SocialSignUpButtonsRow(
                     onGoogleClick = onGoogleClick,
-                    onTelegramClick = onTelegramClick,
+                    onFacebookClick = onFacebookClick,
                     onAppleClick = onAppleClick
                 )
 

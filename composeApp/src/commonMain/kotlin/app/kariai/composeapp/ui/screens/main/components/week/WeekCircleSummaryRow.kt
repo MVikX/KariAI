@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.dp
+import app.kariai.composeapp.localization.t
 
 @Composable
 fun WeekCircleSummaryRow(
@@ -16,7 +17,15 @@ fun WeekCircleSummaryRow(
     modifier: Modifier = Modifier,
     onClick: (Offset) -> Unit = {},
 ) {
-    val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun") //TODO нужна локализация
+    val days = listOf(
+        t("week.mon_week"),
+        t("week.tue_week"),
+        t("week.wed_week"),
+        t("week.thu_week"),
+        t("week.fri_week"),
+        t("week.sat_week"),
+        t("week.sun_week"),
+    )
 
     WeekSummaryContainer(
         modifier = modifier.fillMaxWidth(),
@@ -28,7 +37,7 @@ fun WeekCircleSummaryRow(
         ) {
             // заголовок
             Text(
-                text = "This Week", // TODO: локализация
+                text = t("week.this_week"),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface
             )
@@ -43,12 +52,7 @@ fun WeekCircleSummaryRow(
                         MiniArcIndicator(
                             spentProgress = spentList.getOrElse(index) { 0f },
                             eatenProgress = eatenList.getOrElse(index) { 0f },
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(
-                            text = days[index], // TODO: локализация
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                            dayLabel = days[index]
                         )
                     }
                 }

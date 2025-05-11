@@ -13,8 +13,9 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import app.kariai.composeapp.localization.t
 
- //TODO создать автоматический счёт
+//TODO создать автоматический счёт
 const val maxSpentKcal = 3000
 const val maxBurnedKcal = 3000
 
@@ -75,9 +76,9 @@ fun InfinityProgressArc(
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text("spent", fontSize = 14.sp, color = Color.White)
+                    Text(t("main_screen_arc.spent"), fontSize = 14.sp, color = Color.White)
                     Text("$spentKcal", fontSize = 26.sp, color = Color.White)
-                    Text("kcal", fontSize = 14.sp, color = Color.White)
+                    Text(t("small_all_wards.kcal"), fontSize = 14.sp, color = Color.White)
                 }
             }
 
@@ -88,9 +89,9 @@ fun InfinityProgressArc(
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text("burned", fontSize = 14.sp, color = Color.White)
+                    Text(t("main_screen_arc.burned"), fontSize = 14.sp, color = Color.White)
                     Text("$burnedKcal", fontSize = 26.sp, color = Color.White)
-                    Text("kcal", fontSize = 14.sp, color = Color.White)
+                    Text(t("small_all_wards.kcal"), fontSize = 14.sp, color = Color.White)
                 }
             }
         }

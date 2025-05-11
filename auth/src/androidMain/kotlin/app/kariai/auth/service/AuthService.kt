@@ -33,7 +33,7 @@ actual class AuthService(private val context: Context, private val onCodeReceive
 
                 val sharedPref = context.getSharedPreferences("user_data", Context.MODE_PRIVATE)
                 val editor = sharedPref.edit()
-                editor.putString("auth_code", code)  // Сохраняем код
+                editor.putString("auth_code", code)
                 editor.apply()
 
                 onCodeReceived(code)

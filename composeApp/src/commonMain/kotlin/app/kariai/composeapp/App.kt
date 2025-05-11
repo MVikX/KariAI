@@ -32,10 +32,10 @@ enum class AppScreen {
 }
 
 class AppNavigationState {
-    var currentScreen by mutableStateOf(AppScreen.LOGIN)
+    //var currentScreen by mutableStateOf(AppScreen.LOGIN)
     //var currentScreen by mutableStateOf(AppScreen.REGISTER)
     //var currentScreen by mutableStateOf(AppScreen.USER_DETAILS)
-    //var currentScreen by mutableStateOf(AppScreen.MAIN)
+    var currentScreen by mutableStateOf(AppScreen.MAIN)
 }
 
 @Composable
@@ -48,7 +48,7 @@ fun App(
 ) {
 
     //val language = AppLanguage.RU
-    val language = AppLanguage.RU
+    val language = AppLanguage.EN
 
 
     val coroutineScope = rememberCoroutineScope()
@@ -97,7 +97,7 @@ fun App(
                     onGoogleClick = {
                         authService.openAuthorization()
                     },
-                    onTelegramClick = {
+                    onFacebookClick = {
 
                     },
                     onAppleClick = {
@@ -117,7 +117,7 @@ fun App(
                     onGoogleClick = {
                         navigation.currentScreen = AppScreen.USER_DETAILS
                     },
-                    onTelegramClick = {
+                    onFacebookClick = {
 
                     },
                     onAppleClick = {
