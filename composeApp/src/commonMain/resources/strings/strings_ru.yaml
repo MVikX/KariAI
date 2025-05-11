@@ -21,8 +21,8 @@ auth:
   no_account: "Нет аккаунта?"
   login_with_google: "Войти через Google"
   signup_with_google: "Зарегистрироваться через Google"
-  login_with_telegram: "Войти через Telegram"
-  signup_with_telegram: "Зарегистрироваться через Telegram"
+  login_with_facebook: "Войти через Facebook"
+  signup_with_facebook: "Зарегистрироваться через Facebook"
 
 validation:
   invalid_email: "Неверный формат почты"
@@ -37,11 +37,11 @@ assistant:
 
 home:
   hello: "Добро пожаловать"
-  hello_in_down: "Ваш умный ИИ ассистент - KariAI"
+  hello_in_down: "Ваш умный ИИ ассистент"
   today: "Сегодня"
   calories: "Калории"
   water: "Вода"
-  steps: "Шаги"
+  activity: "Движение"
   start_chat: "Начать чат"
   your_progress: "Ваш прогресс"
 
@@ -76,3 +76,34 @@ profile:
   intolerances: "Непереносимости"
   title_name_user1: "Введите информацию"
   title_name_user2: "о себе"
+
+week:
+  mon_week: "Пн"
+  tue_week: "Вт"
+  wed_week: "Ср"
+  thu_week: "Чт"
+  fri_week: "Пт"
+  sat_week: "Сб"
+  sun_week: "Вс"
+  this_week: "На этой неделе"
+
+stats:
+  distance: "Пройдено"
+  activity: "Движение"
+  goals: "Цели"
+  carbs: "Углеводы"
+  protein: "Белок"
+  fat: "Жиры"
+
+assistant_words:
+  assistant: "Ассистент"
+
+small_all_wards:
+  open: "Открыть"
+  kcal: "kcal"
+  km: "км"
+  k: "к"
+
+main_screen_arc:
+  spent: "Потраченные"
+  burned: "Сожженные"

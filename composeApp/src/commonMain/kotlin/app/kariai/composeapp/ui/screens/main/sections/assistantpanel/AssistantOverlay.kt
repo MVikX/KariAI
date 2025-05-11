@@ -12,10 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
+import app.kariai.storage.nutrition.NutritionStats
 import kotlinx.coroutines.launch
-import app.kariai.shared.presentation.main.NutritionStats
-
-
 
 @Composable
 fun AssistantOverlay(

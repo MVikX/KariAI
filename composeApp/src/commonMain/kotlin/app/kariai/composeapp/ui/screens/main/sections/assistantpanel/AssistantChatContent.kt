@@ -16,11 +16,12 @@ import app.kariai.composeapp.ui.screens.main.sections.assistantpanel.bubbles.Use
 import app.kariai.composeapp.ui.screens.main.sections.assistantpanel.components.MessageInputField
 import app.kariai.composeapp.ui.screens.main.sections.assistantpanel.components.SwipeDismissBox
 import app.kariai.shared.presentation.main.assistentpanel.ChatMessage
+import app.kariai.storage.nutrition.NutritionStats
 
 
 @Composable
 fun AssistantChatContent(
-    nutritionStats: MutableState<app.kariai.shared.presentation.main.NutritionStats>,
+    nutritionStats: MutableState<NutritionStats>,
     onDismissRequest: () -> Unit
 ) {
     var inputText by remember { mutableStateOf("") }

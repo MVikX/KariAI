@@ -1,10 +1,13 @@
 package app.kariai.composeapp.ui.screens.main
 
+import androidx.compose.animation.core.animateDp
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -12,20 +15,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.dp
 import app.kariai.composeapp.resources.NutriTheme
-import app.kariai.shared.presentation.main.NutritionStats
+import app.kariai.composeapp.ui.screens.downmenu.MenuScreen
+import app.kariai.composeapp.ui.screens.downmenu.animations.BottomMenuSheet
 import app.kariai.composeapp.ui.screens.main.sections.arc.ArcOverlay
 import app.kariai.composeapp.ui.screens.main.sections.assistantpanel.AssistantOverlay
 import app.kariai.composeapp.ui.screens.main.sections.carbs.CarbsOverlay
 import app.kariai.composeapp.ui.screens.main.components.arc.InfinityProgressArc
 import app.kariai.composeapp.ui.screens.main.components.assistantpanel.AssistantPanel
+import app.kariai.composeapp.ui.screens.main.components.downbar.CustomBottomBar
 import app.kariai.composeapp.ui.screens.main.components.stats.StatsGrid
 import app.kariai.composeapp.ui.screens.main.components.week.WeekCircleSummaryRow
 import app.kariai.composeapp.ui.screens.main.sections.distance.DistanceOverlay
 import app.kariai.composeapp.ui.screens.main.sections.fat.FatOverlay
 import app.kariai.composeapp.ui.screens.main.sections.goals.GoalsOverlay
 import app.kariai.composeapp.ui.screens.main.sections.protein.ProteinOverlay
-import app.kariai.composeapp.ui.screens.main.sections.steps.StepsOverlay
+import app.kariai.composeapp.ui.screens.main.sections.steps.ActivityOverlay
 import app.kariai.composeapp.ui.screens.main.sections.week.WeekOverlay
+import app.kariai.storage.nutrition.NutritionStats
 
 @Composable
 fun MainScreen() {
@@ -55,7 +61,10 @@ fun MainScreen() {
 
     val assistantOverlayVisible = remember { mutableStateOf(false) }
 
-    val nutritionStats = remember { mutableStateOf(app.kariai.shared.presentation.main.NutritionStats()) }
+    val nutritionStats = remember { mutableStateOf(NutritionStats()) }
+    val isMenuVisible = remember { mutableStateOf(false) }
+
+    val selectedTab = remember { mutableStateOf("home") }
 
 
 
@@ -71,13 +80,13 @@ fun MainScreen() {
                         .padding(horizontal = 24.dp)
                         .systemBarsPadding()
                         .verticalScroll(rememberScrollState()),
-                    verticalArrangement = Arrangement.Center,
+                    verticalArrangement = Arrangement.Top, // Прокручиваемый контент сверху
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     InfinityProgressArc( //TODO требует доработки логики и автоматики
                         spentKcal = nutritionStats.value.caloriesSpent,
                         burnedKcal = nutritionStats.value.caloriesBurned + 3000,
-                        onClick = {offset ->
+                        onClick = { offset ->
                             arcClickOffset.value = offset
                             arcOverlayVisible.value = true
                         }
@@ -114,7 +123,7 @@ fun MainScreen() {
                     )
 
 
-                    Spacer(modifier = Modifier.height(35.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
 
 
                     WeekCircleSummaryRow(//TODO требует логики и исправлений
@@ -127,7 +136,7 @@ fun MainScreen() {
                     )
 
 
-                    Spacer(modifier = Modifier.height(35.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
 
 
                     //TODO демо асистент
@@ -136,9 +145,47 @@ fun MainScreen() {
                     })
                 }
 
+                // Нижний бар, растягиваемый по ширине
+                val transition = updateTransition(targetState = isMenuVisible.value, label = "menu_bar_transition")
+                val barOffset by transition.animateDp(label = "barOffset") {
+                    if (it) 500.dp else 0.dp // выезжает вверх, чтобы освободить место меню
+                }
 
 
-                //АркЭкран вызов
+                if (isMenuVisible.value) {
+                    BottomMenuSheet(
+                        visible = isMenuVisible.value,
+                        onDismissRequest = {
+                            isMenuVisible.value = false
+                            selectedTab.value = "home"
+                        }
+                    ) {
+                        MenuScreen()
+                    }
+                }
+
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.BottomCenter)
+                        .offset(y = -barOffset)
+                ) {
+                    CustomBottomBar(
+                        onHomeClick = { selectedTab.value = "home" },
+                        onMenuClick = {
+                            selectedTab.value = "menu"
+                            isMenuVisible.value = true
+                        },
+                        onAiFoodClick = { selectedTab.value = "ai" },
+                        isEnabled = !isMenuVisible.value,
+                        selectedTab = selectedTab.value // 👈 новое
+                    )
+                }
+
+
+
+                // Оверлеи (вызываются в случае взаимодействия с элементами)
                 ArcOverlay(
                     visible = arcOverlayVisible.value,
                     offset = arcClickOffset.value,
@@ -147,23 +194,19 @@ fun MainScreen() {
                     burnedKcal = nutritionStats.value.caloriesBurned,
                 )
 
-
-                //Дистанция вызов
                 DistanceOverlay(
                     visible = distanceOverlayVisible.value,
                     offset = distanceOffset.value,
                     onDismiss = { distanceOverlayVisible.value = false }
                 )
 
-                //шаги вызов
-                StepsOverlay(
+                ActivityOverlay(
                     visible = stepsOverlayVisible.value,
                     offset = stepsOffset.value,
                     onDismiss = { stepsOverlayVisible.value = false }
                 )
 
 
-                //ачивки вызов
                 GoalsOverlay(
                     visible = goalsOverlayVisible.value,
                     offset = goalsOffset.value,
@@ -171,7 +214,6 @@ fun MainScreen() {
                 )
 
 
-                //карбис вызов
                 CarbsOverlay(
                     visible = carbsOverlayVisible.value,
                     offset = carbsOffset.value,
@@ -179,7 +221,6 @@ fun MainScreen() {
                 )
 
 
-                //протеин вызов
                 ProteinOverlay(
                     visible = proteinOverlayVisible.value,
                     offset = proteinOffset.value,
@@ -187,7 +228,6 @@ fun MainScreen() {
                 )
 
 
-                //фат вызов
                 FatOverlay(
                     visible = fatOverlayVisible.value,
                     offset = fatOffset.value,
@@ -195,7 +235,6 @@ fun MainScreen() {
                 )
 
 
-                //недели вызов
                 WeekOverlay(
                     visible = weekOverlayVisible.value,
                     offset = weekOffset.value,
@@ -203,7 +242,6 @@ fun MainScreen() {
                 )
 
 
-                // ассистент вызов
                 AssistantOverlay(
                     visible = assistantOverlayVisible.value,
                     onDismiss = { assistantOverlayVisible.value = false },

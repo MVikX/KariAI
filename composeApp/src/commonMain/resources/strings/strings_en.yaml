@@ -19,10 +19,10 @@ auth:
   login_with_apple: "Sign in with Apple"
   already_have_account: "Already have an account?"
   no_account: "Don’t have an account?"
-  login_with_google: "Log in Google"
-  signup_with_google: "Зарегистрироваться через Google"
-  login_with_telegram: "Log in Telegram"
-  signup_with_telegram: "Зарегистрироваться через Telegram"
+  login_with_google: "Continue with Google"
+  signup_with_google: "Continue with Google"
+  login_with_facebook: "Continue with Facebook"
+  signup_with_facebook: "Continue with Facebook"
 
 validation:
   invalid_email: "Invalid email format"
@@ -41,7 +41,7 @@ home:
   today: "Today"
   calories: "Calories"
   water: "Water"
-  steps: "Steps"
+  activity: "Activity"
   start_chat: "Start Chat"
   your_progress: "Your Progress"
 
@@ -76,3 +76,34 @@ profile:
   intolerances: "Intolerances"
   title_name_user1: "Enter information"
   title_name_user2: "about yourself"
+
+week:
+  mon_week: "Mon"
+  tue_week: "Tue"
+  wed_week: "Wed"
+  thu_week: "Thu"
+  fri_week: "Fri"
+  sat_week: "Sat"
+  sun_week: "Sun"
+  this_week: "This Week"
+
+stats:
+  distance: "Distance"
+  activity: "Activity"
+  goals: "Goals"
+  carbs: "Carbs"
+  protein: "Protein"
+  fat: "Fat"
+
+assistant_words:
+  assistant: "Assistant"
+
+small_all_wards:
+  open: "Open"
+  kcal: "kcal"
+  km: "km"
+  k: "K"
+
+main_screen_arc:
+  spent: "Spent"
+  burned: "Burned"

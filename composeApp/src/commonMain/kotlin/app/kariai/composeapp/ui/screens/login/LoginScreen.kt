@@ -1,6 +1,5 @@
 package app.kariai.composeapp.ui.screens.login
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -12,15 +11,13 @@ import app.kariai.shared.presentation.auth.login.LoginViewModel
 import app.kariai.composeapp.components.SocialSignInButtonsRow
 import app.kariai.composeapp.components.auth.ErrorMessage
 import app.kariai.composeapp.ui.screens.login.components.Title
-import app.kariai.shared.MR
-import dev.icerock.moko.resources.compose.painterResource
 
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel,
     onSignInClick: () -> Unit = {},
     onGoogleClick: () -> Unit = {},
-    onTelegramClick: () -> Unit = {},
+    onFacebookClick: () -> Unit = {},
     onAppleClick: () -> Unit = {},
     onSignUpClick: () -> Unit = {},
 ) {
@@ -77,7 +74,7 @@ fun LoginScreen(
 
                 SocialSignInButtonsRow(
                     onGoogleClick = onGoogleClick,
-                    onTelegramClick = onTelegramClick,
+                    onFacebookClick = onFacebookClick,
                     onAppleClick = onAppleClick
                 )
 

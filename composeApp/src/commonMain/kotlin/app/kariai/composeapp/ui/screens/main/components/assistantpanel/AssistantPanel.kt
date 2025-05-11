@@ -10,9 +10,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import app.kariai.composeapp.localization.t
 import app.kariai.shared.MR
 import dev.icerock.moko.resources.compose.painterResource
 
@@ -47,14 +47,14 @@ fun AssistantPanel(
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
-                    text = "Assistant...",//TODO нужна локализация
+                    text = t("assistant_words.assistant") + "...",
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                     fontSize = 16.sp
                 )
             }
 
             Text(
-                text = "Open", //TODO нужна локализация
+                text = t("small_all_wards.open"),
                 color = MaterialTheme.colorScheme.onSurface,
                 fontSize = 16.sp
             )

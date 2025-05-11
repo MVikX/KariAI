@@ -6,7 +6,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.dp
 import app.kariai.shared.MR
-import app.kariai.shared.presentation.main.NutritionStats
+import app.kariai.composeapp.localization.t
+import app.kariai.composeapp.ui.screens.main.components.stats.components.toStyledKcalString
+import app.kariai.storage.nutrition.NutritionStats
+
 
 @Composable
 fun StatsGrid (
@@ -28,23 +31,26 @@ fun StatsGrid (
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             StatBox(
-                title = "Distance",
-                value = "25 km",
+                title = t("stats.distance"),
+                value = "${stats.distanceKm} " + t("small_all_wards.km"),
                 modifier = Modifier.weight(1f),
                 onClick = onDistanceClick,
                 image = MR.images.distance,
             )
 
             StatBox(
-                title = "Steps",
-                value = "18 000",
+                title = t("stats.activity"),
+                value = toStyledKcalString(
+                    stats.activityKcal,
+                    t("small_all_wards.kcal")
+                ),
                 modifier = Modifier.weight(1f),
                 onClick = onStepsClick,
-                image = MR.images.steps
+                image = MR.images.activity
             )
 
             StatBox(
-                title = "Goals",
+                title = t("stats.goals"),
                 value = "2",
                 modifier = Modifier.weight(1f),
                 onClick = onGoalsClick,
@@ -57,7 +63,7 @@ fun StatsGrid (
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             StatBox(
-                title = "Carbs",
+                title = t("stats.carbs"),
                 value = "${stats.carbs} g",
                 modifier = Modifier.weight(1f),
                 onClick = onCarbsClick,
@@ -65,7 +71,7 @@ fun StatsGrid (
             )
 
             StatBox(
-                title = "Protein",
+                title = t("stats.protein"),
                 value = "${stats.proteins} g",
                 modifier = Modifier.weight(1f),
                 onClick = onProteinClick,
@@ -73,7 +79,7 @@ fun StatsGrid (
             )
 
             StatBox(
-                title = "Fat",
+                title = t("stats.fat"),
                 value = "${stats.fats} g",
                 modifier = Modifier.weight(1f),
                 onClick = onFatClick,

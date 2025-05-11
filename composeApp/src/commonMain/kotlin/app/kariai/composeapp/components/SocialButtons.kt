@@ -12,12 +12,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
@@ -54,13 +52,13 @@ fun GoogleSignButton(
      */
 }
 @Composable
-fun TelegramSignButton(
+fun FacebookSignButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    TelegramBorderButton(
-        image = MR.images.wwwTelega,
+    FacebookBorderButton(
+        image = MR.images.wwwFaceBook,
         text = text,
         onClick = onClick,
         modifier = modifier
@@ -231,7 +229,7 @@ fun GoogleBorderButton( //TODO добавить автоматизацию цв�
 
 
 @Composable
-fun TelegramBorderButton( //TODO добавить автоматизацию цвета
+fun FacebookBorderButton( //TODO добавить автоматизацию цвета
     text: String,
     image: ImageResource,
     onClick: () -> Unit,
@@ -314,7 +312,7 @@ fun TelegramBorderButton( //TODO добавить автоматизацию ц�
 @Composable
 fun SocialSignInButtonsRow(
     onGoogleClick: () -> Unit,
-    onTelegramClick: () -> Unit,
+    onFacebookClick: () -> Unit,
     onAppleClick: () -> Unit,
 ) {
     val isIOS = PlatformUtils.isIOS()
@@ -331,9 +329,9 @@ fun SocialSignInButtonsRow(
                 .height(56.dp)
         )
 
-        TelegramSignButton(
-            text = t("auth.login_with_telegram"),
-            onClick = onTelegramClick,
+        FacebookSignButton(
+            text = t("auth.login_with_facebook"),
+            onClick = onFacebookClick,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp)
@@ -355,7 +353,7 @@ fun SocialSignInButtonsRow(
 @Composable
 fun SocialSignUpButtonsRow(
     onGoogleClick: () -> Unit,
-    onTelegramClick: () -> Unit,
+    onFacebookClick: () -> Unit,
     onAppleClick: () -> Unit,
 ) {
     val isIOS = PlatformUtils.isIOS()
@@ -372,9 +370,9 @@ fun SocialSignUpButtonsRow(
                 .height(56.dp)
         )
 
-        TelegramSignButton(
-            text = t("auth.signup_with_telegram"),
-            onClick = onTelegramClick,
+        FacebookSignButton(
+            text = t("auth.signup_with_facebook"),
+            onClick = onFacebookClick,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp)
