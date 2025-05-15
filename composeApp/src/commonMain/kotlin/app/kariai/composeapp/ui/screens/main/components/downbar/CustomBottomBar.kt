@@ -13,6 +13,14 @@ import androidx.compose.ui.unit.dp
 import app.kariai.shared.MR
 import dev.icerock.moko.resources.compose.painterResource
 
+// size values
+private val IconSize = 30.dp
+private val IconPadding = 4.dp
+private val IconCornerRadius = 12.dp
+
+// visual effects
+private const val SelectedIconAlpha = 0.2f
+
 @Composable
 fun CustomBottomBar(
     onHomeClick: () -> Unit,
@@ -21,8 +29,6 @@ fun CustomBottomBar(
     isEnabled: Boolean = true,
     selectedTab: String = "home",
 ) {
-    val sizeIconBar = 30.dp
-
     BottomBarContainer(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -34,42 +40,42 @@ fun CustomBottomBar(
                 painter = painterResource(MR.images.ai_food),
                 contentDescription = null,
                 modifier = Modifier
-                    .height(sizeIconBar)
+                    .height(IconSize)
                     .then(if (isEnabled) Modifier.clickable { onAiFoodClick() } else Modifier)
                     .background(
-                        if (selectedTab == "ai") MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
+                        if (selectedTab == "ai") MaterialTheme.colorScheme.primary.copy(alpha = SelectedIconAlpha)
                         else Color.Transparent,
-                        shape = RoundedCornerShape(12.dp)
+                        shape = RoundedCornerShape(IconCornerRadius)
                     )
-                    .padding(4.dp)
+                    .padding(IconPadding)
             )
 
             Image(
                 painter = painterResource(MR.images.home),
                 contentDescription = null,
                 modifier = Modifier
-                    .height(sizeIconBar)
+                    .height(IconSize)
                     .then(if (isEnabled) Modifier.clickable { onHomeClick() } else Modifier)
                     .background(
-                        if (selectedTab == "home") MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
+                        if (selectedTab == "home") MaterialTheme.colorScheme.primary.copy(alpha = SelectedIconAlpha)
                         else Color.Transparent,
-                        shape = RoundedCornerShape(12.dp)
+                        shape = RoundedCornerShape(IconCornerRadius)
                     )
-                    .padding(4.dp)
+                    .padding(IconPadding)
             )
 
             Image(
                 painter = painterResource(MR.images.menu),
                 contentDescription = null,
                 modifier = Modifier
-                    .height(sizeIconBar)
+                    .height(IconSize)
                     .then(if (isEnabled) Modifier.clickable { onMenuClick() } else Modifier)
                     .background(
-                        if (selectedTab == "menu") MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
+                        if (selectedTab == "menu") MaterialTheme.colorScheme.primary.copy(alpha = SelectedIconAlpha)
                         else Color.Transparent,
-                        shape = RoundedCornerShape(12.dp)
+                        shape = RoundedCornerShape(IconCornerRadius)
                     )
-                    .padding(4.dp)
+                    .padding(IconPadding)
             )
         }
     }

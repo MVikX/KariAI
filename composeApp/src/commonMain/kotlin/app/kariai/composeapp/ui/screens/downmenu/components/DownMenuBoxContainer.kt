@@ -17,6 +17,13 @@ import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
 
+private val MenuItemCorner = 15.dp
+private val MenuItemPadding = 8.dp
+private val MenuImageSize = 20.dp
+private val MenuHorizontalVerticalSpacing = 8.dp
+private val SpacerWeightHalf = 0.5f
+private val SpacerWeightFull = 1f
+
 @Composable
 fun DownMenuBoxContainer(
     modifier: Modifier = Modifier,
@@ -39,36 +46,36 @@ fun DownMenuBoxContainer(
                 }
             }
             .background(
-                color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 1f),
-                shape = RoundedCornerShape(15.dp)
+                color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = SpacerWeightFull),
+                shape = RoundedCornerShape(MenuItemCorner)
             )
-            .padding(8.dp),
+            .padding(MenuItemPadding),
         contentAlignment = Alignment.Center
     ) {
         Row(
             modifier = Modifier
-                .padding(horizontal = 8.dp, vertical = 8.dp),
+                .padding(horizontal = MenuHorizontalVerticalSpacing, vertical = MenuHorizontalVerticalSpacing),
             verticalAlignment = Alignment.CenterVertically
         ) {
             if (image != null) {
                 Image(
                     painter = painterResource(image),
                     contentDescription = null,
-                    modifier = Modifier.height(20.dp)
+                    modifier = Modifier.height(MenuImageSize)
                 )
             }
 
-            Spacer(modifier = Modifier.weight(0.5f))
+            Spacer(modifier = Modifier.weight(SpacerWeightHalf))
 
             content()
 
-            Spacer(modifier = Modifier.weight(0.5f))
+            Spacer(modifier = Modifier.weight(SpacerWeightHalf))
 
             if (image != null) {
                 Image(
                     painter = painterResource(image),
                     contentDescription = null,
-                    modifier = Modifier.height(20.dp)
+                    modifier = Modifier.height(MenuImageSize)
                 )
             }
         }

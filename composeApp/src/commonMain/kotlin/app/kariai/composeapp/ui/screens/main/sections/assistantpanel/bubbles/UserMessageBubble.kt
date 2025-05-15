@@ -9,6 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+// style values
+private val BubbleCornerRadius = 16.dp
+private val HorizontalContentPadding = 16.dp
+private val VerticalContentPadding = 12.dp
+
 @Composable
 fun UserMessageBubble(text: String) {
     Row(
@@ -19,9 +24,9 @@ fun UserMessageBubble(text: String) {
             modifier = Modifier
                 .background(
                     color = MaterialTheme.colorScheme.primary,
-                    shape = RoundedCornerShape(16.dp)
+                    shape = RoundedCornerShape(BubbleCornerRadius)
                 )
-                .padding(horizontal = 16.dp, vertical = 12.dp)
+                .padding(horizontal = HorizontalContentPadding, vertical = VerticalContentPadding)
         ) {
             Text(
                 text = text,

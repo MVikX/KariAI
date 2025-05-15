@@ -12,6 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import app.kariai.composeapp.localization.t
 
+private val TermsCheckboxBottomPadding = 16.dp
+private val TermsTextSpacing = 8.dp
+private val TermsTextAlpha = 0.8f
+private val TermsColumnWeight = 1f
+
 @Composable
 actual fun PlatformTermsBlock(
     isChecked: Boolean,
@@ -22,7 +27,7 @@ actual fun PlatformTermsBlock(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = 16.dp),
+            .padding(bottom = TermsCheckboxBottomPadding),
         verticalAlignment = Alignment.Top
     ) {
         Checkbox(
@@ -35,13 +40,13 @@ actual fun PlatformTermsBlock(
             )
         )
 
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(TermsTextSpacing))
 
-        Column(modifier = Modifier.weight(1f)) {
+        Column(modifier = Modifier.weight(TermsColumnWeight)) {
             Text(
                 text = t("legal.terms_accept_prefix"),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f)
+                color = MaterialTheme.colorScheme.onBackground.copy(alpha = TermsTextAlpha)
             )
 
             Row(
@@ -58,7 +63,7 @@ actual fun PlatformTermsBlock(
                 Text(
                     text = " ${t("common.and")} ",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f)
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = TermsTextAlpha)
                 )
 
                 Text(

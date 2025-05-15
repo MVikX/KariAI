@@ -33,6 +33,12 @@ import app.kariai.composeapp.ui.screens.main.sections.steps.ActivityOverlay
 import app.kariai.composeapp.ui.screens.main.sections.week.WeekOverlay
 import app.kariai.storage.nutrition.NutritionStats
 
+// UI layout values
+private val HorizontalScreenPadding = 24.dp
+private val SectionSpacing = 20.dp
+private val BottomMenuOffsetShown = 500.dp
+private val BottomMenuOffsetHidden = 0.dp
+
 @Composable
 fun MainScreen() {
     val arcOverlayVisible = remember { mutableStateOf(false) }
@@ -77,7 +83,7 @@ fun MainScreen() {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(horizontal = 24.dp)
+                        .padding(horizontal = HorizontalScreenPadding)
                         .systemBarsPadding()
                         .verticalScroll(rememberScrollState()),
                     verticalArrangement = Arrangement.Top, // Прокручиваемый контент сверху
@@ -123,7 +129,7 @@ fun MainScreen() {
                     )
 
 
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(SectionSpacing))
 
 
                     WeekCircleSummaryRow(//TODO требует логики и исправлений
@@ -136,7 +142,7 @@ fun MainScreen() {
                     )
 
 
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(SectionSpacing))
 
 
                     //TODO демо асистент
@@ -148,7 +154,7 @@ fun MainScreen() {
                 // Нижний бар, растягиваемый по ширине
                 val transition = updateTransition(targetState = isMenuVisible.value, label = "menu_bar_transition")
                 val barOffset by transition.animateDp(label = "barOffset") {
-                    if (it) 500.dp else 0.dp // выезжает вверх, чтобы освободить место меню
+                    if (it) BottomMenuOffsetShown else BottomMenuOffsetHidden // выезжает вверх, чтобы освободить место меню
                 }
 
 
@@ -179,13 +185,13 @@ fun MainScreen() {
                         },
                         onAiFoodClick = { selectedTab.value = "ai" },
                         isEnabled = !isMenuVisible.value,
-                        selectedTab = selectedTab.value // 👈 новое
+                        selectedTab = selectedTab.value //
                     )
                 }
 
 
 
-                // Оверлеи (вызываются в случае взаимодействия с элементами)
+                // Оверлеи
                 ArcOverlay(
                     visible = arcOverlayVisible.value,
                     offset = arcClickOffset.value,

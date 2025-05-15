@@ -13,12 +13,8 @@ import app.kariai.composeapp.ui.screens.main.sections.assistantpanel.TypingIndic
 import app.kariai.composeapp.ui.screens.main.sections.assistantpanel.bubbles.AssistantMessageBubble
 import app.kariai.composeapp.ui.screens.main.sections.assistantpanel.bubbles.UserMessageBubble
 
-
-
-
-
 @Composable
-fun MessageList(messages: List<app.kariai.shared.presentation.main.assistentpanel.ChatMessage>) {
+fun MessageList(messages: List<ChatMessage>) {
     LazyColumn(
         reverseLayout = true,
         modifier = Modifier.fillMaxSize()
@@ -28,7 +24,7 @@ fun MessageList(messages: List<app.kariai.shared.presentation.main.assistentpane
                 UserMessageBubble(text = message.text)
             } else {
                 if (message.text == "TYPING") {
-                    // Показываем анимацию точек
+                    // анимация точек
                     AssistantMessageBubble {
                         TypingIndicator()
                     }

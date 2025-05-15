@@ -9,12 +9,20 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import kotlin.math.roundToInt
 
+// thresholds
+private const val ThousandThreshold = 1000
+private const val SmallFontThreshold = 100
+
+// formatting
+private const val KiloSuffixPrecision = 10.0
+private val SmallUnitFontSize = TextUnit(12f, TextUnitType.Sp)
+
 @Composable
 fun toStyledKcalString(value: Double, unit: String): AnnotatedString {
     val rounded = value.roundToInt()
 
-    val formattedValue = if (rounded >= 1000) {
-        val inK = (value / 1000 * 10).roundToInt() / 10.0
+    val formattedValue = if (rounded >= ThousandThreshold) {
+        val inK = (value / ThousandThreshold * KiloSuffixPrecision).roundToInt() / KiloSuffixPrecision
         "${inK}k"
     } else {
         rounded.toString()
@@ -22,8 +30,8 @@ fun toStyledKcalString(value: Double, unit: String): AnnotatedString {
 
     val baseStyle = MaterialTheme.typography.bodyLarge
 
-    val unitFontSize = if (rounded >= 100) {
-        TextUnit(12f, TextUnitType.Sp)
+    val unitFontSize = if (rounded >= SmallFontThreshold) {
+        SmallUnitFontSize
     } else {
         baseStyle.fontSize
     }

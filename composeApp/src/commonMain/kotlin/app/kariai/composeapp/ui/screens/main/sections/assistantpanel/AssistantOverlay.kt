@@ -15,6 +15,13 @@ import androidx.compose.ui.unit.dp
 import app.kariai.storage.nutrition.NutritionStats
 import kotlinx.coroutines.launch
 
+// style + thresholds
+private val ExpandedAssistantHeight = 540.dp
+private val CollapsedAssistantHeight = 0.dp
+private const val DragDismissThreshold = 100f
+private const val OverlayBackgroundAlpha = 0.5f
+private const val UpperBoxWeight = 1f
+
 @Composable
 fun AssistantOverlay(
     visible: Boolean,
@@ -22,55 +29,53 @@ fun AssistantOverlay(
     nutritionStats: MutableState<NutritionStats>,
 ) {
     val coroutineScope = rememberCoroutineScope()
-    val targetHeight = if (visible) 540.dp else 0.dp
+    val targetHeight = if (visible) ExpandedAssistantHeight else CollapsedAssistantHeight
     val animatedHeight by animateDpAsState(targetValue = targetHeight, label = "assistantHeight")
 
-    if (visible || animatedHeight > 0.dp) {
+    if (visible || animatedHeight > CollapsedAssistantHeight) {
         Box(modifier = Modifier.fillMaxSize()) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .pointerInput(Unit) {
                         detectVerticalDragGestures { _, dragAmount ->
-                            if (dragAmount > 100) {
+                            if (dragAmount > DragDismissThreshold) {
                                 coroutineScope.launch { onDismiss() }
                             }
                         }
                     }
             ) {
-                Box(modifier = Modifier.fillMaxSize()) {
-                    Column(modifier = Modifier.fillMaxSize()) {
-                        Box(
-                            modifier = Modifier
-                                .weight(1f)
-                                .fillMaxWidth()
-                                .background(Color.Black.copy(alpha = 0.5f))
-                                .pointerInput(Unit) {
-                                    detectVerticalDragGestures { _, dragAmount ->
-                                        if (dragAmount > 100) {
-                                            coroutineScope.launch { onDismiss() }
-                                        }
+                Column(modifier = Modifier.fillMaxSize()) {
+                    Box(
+                        modifier = Modifier
+                            .weight(UpperBoxWeight)
+                            .fillMaxWidth()
+                            .background(Color.Black.copy(alpha = OverlayBackgroundAlpha))
+                            .pointerInput(Unit) {
+                                detectVerticalDragGestures { _, dragAmount ->
+                                    if (dragAmount > DragDismissThreshold) {
+                                        coroutineScope.launch { onDismiss() }
                                     }
                                 }
-                                .clickable(
-                                    indication = null,
-                                    interactionSource = remember { MutableInteractionSource() }
-                                ) {
-                                    coroutineScope.launch { onDismiss() }
-                                }
-                        )
+                            }
+                            .clickable(
+                                indication = null,
+                                interactionSource = remember { MutableInteractionSource() }
+                            ) {
+                                coroutineScope.launch { onDismiss() }
+                            }
+                    )
 
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(animatedHeight)
-                                .background(MaterialTheme.colorScheme.surface)
-                        ) {
-                            AssistantChatContent(
-                                nutritionStats = nutritionStats,
-                                onDismissRequest = { coroutineScope.launch { onDismiss() } }
-                            )
-                        }
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(animatedHeight)
+                            .background(MaterialTheme.colorScheme.surface)
+                    ) {
+                        AssistantChatContent(
+                            nutritionStats = nutritionStats,
+                            onDismissRequest = { coroutineScope.launch { onDismiss() } }
+                        )
                     }
                 }
             }

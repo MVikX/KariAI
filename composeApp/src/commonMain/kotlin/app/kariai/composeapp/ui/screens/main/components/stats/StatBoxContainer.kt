@@ -15,6 +15,11 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.unit.dp
 
+// style values
+private const val SurfaceAlpha = 1f
+private val BoxCornerRadius = 15.dp
+private val BoxPadding = 25.dp
+
 @Composable
 fun StatBoxContainer(
     modifier: Modifier = Modifier,
@@ -36,10 +41,10 @@ fun StatBoxContainer(
                 }
             }
             .background(
-                color = MaterialTheme.colorScheme.surface.copy(alpha = 1f),
-                shape = RoundedCornerShape(15.dp),
+                color = MaterialTheme.colorScheme.surface.copy(alpha = SurfaceAlpha),
+                shape = RoundedCornerShape(BoxCornerRadius),
             )
-            .padding(25.dp),
+            .padding(BoxPadding),
         contentAlignment = Alignment.Center
     ) {
         content()

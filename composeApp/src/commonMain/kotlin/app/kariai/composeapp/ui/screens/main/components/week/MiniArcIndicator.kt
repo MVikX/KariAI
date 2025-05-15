@@ -13,64 +13,77 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.dp
 
+// sizes
+private const val DefaultIndicatorSize = 40f
+private val ArcStrokeWidth = 4.dp
+
+// angles
+private const val FullCircleAngle = 360f
+private const val StartAngle = -90f
+private const val ZeroFloat = 0f
+
+// colors
+private val SpentColor = Color(0xFFFF9800)
+private val EatenColor = Color(0xFF2196F3)
+private val BackgroundArcColor = Color.LightGray.copy(alpha = 0.3f)
+private const val LabelTextAlpha = 0.85f
+
 @Composable
 fun MiniArcIndicator(
     modifier: Modifier = Modifier,
     spentProgress: Float, // от 0 до 1
     eatenProgress: Float, // от 0 до 1
-    dayLabel: String, // ← добавили день недели
-    size: Float = 40f
+    dayLabel: String,
+    size: Float = DefaultIndicatorSize
 ) {
     Box(
         modifier = modifier.size(size.dp),
         contentAlignment = Alignment.Center
     ) {
         Canvas(modifier = Modifier.matchParentSize()) {
-            val strokeWidth = 4.dp.toPx()
+            val strokeWidthPx = ArcStrokeWidth.toPx()
             val diameter = size.dp.toPx()
             val arcSize = Size(diameter, diameter)
 
             val total = spentProgress + eatenProgress
-            val spent = if (total > 0f) spentProgress / total else 0f
-            val eaten = if (total > 0f) eatenProgress / total else 0f
+            val spent = if (total > ZeroFloat) spentProgress / total else 0f
+            val eaten = if (total > ZeroFloat) eatenProgress / total else 0f
 
-            val startAngle = -90f
-            val spentAngle = spent * 360f
-            val eatenAngle = eaten * 360f
+            val spentAngle = spent * FullCircleAngle
+            val eatenAngle = eaten * FullCircleAngle
 
             // фон
             drawArc(
-                color = Color.LightGray.copy(alpha = 0.3f),
-                startAngle = 0f,
-                sweepAngle = 360f,
+                color = BackgroundArcColor,
+                startAngle = ZeroFloat,
+                sweepAngle = FullCircleAngle,
                 useCenter = false,
-                style = Stroke(strokeWidth)
+                style = Stroke(strokeWidthPx)
             )
 
-            // потрачено (оранжевый)
+            // потрачено (синий)
             drawArc(
-                color = Color(0xFFFF9800),
-                startAngle = startAngle - spentAngle,
+                color = SpentColor,
+                startAngle = StartAngle - spentAngle,
                 sweepAngle = spentAngle,
                 useCenter = false,
-                style = Stroke(strokeWidth)
+                style = Stroke(strokeWidthPx)
             )
 
-            // съедено (синий)
+            // съедено (ораньжевый)
             drawArc(
-                color = Color(0xFF2196F3),
-                startAngle = startAngle,
+                color = EatenColor,
+                startAngle = StartAngle,
                 sweepAngle = eatenAngle,
                 useCenter = false,
-                style = Stroke(strokeWidth)
+                style = Stroke(strokeWidthPx)
             )
         }
 
-        // текст внутри круга
         Text(
             text = dayLabel,
             style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.85f)
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = LabelTextAlpha)
         )
     }
 }

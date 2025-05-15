@@ -8,6 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 
+private const val DismissDragThreshold = 100
+
 @Composable
 fun SwipeDismissBox(
     onDismissRequest: () -> Unit,
@@ -24,7 +26,7 @@ fun SwipeDismissBox(
                 .fillMaxSize()
                 .pointerInput(Unit) {
                     detectVerticalDragGestures { _, dragAmount ->
-                        if (dragAmount > 100) {
+                        if (dragAmount > DismissDragThreshold) {
                             onDismissRequest()
                         }
                     }

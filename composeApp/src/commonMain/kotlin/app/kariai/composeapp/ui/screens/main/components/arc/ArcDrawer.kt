@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.main.components.arc
-
+//TODO добавить цвет в темы
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
@@ -10,6 +10,18 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import kotlin.math.cos
 import kotlin.math.sin
 
+// arc drawing constants
+private const val ArcStrokeWidth = 70f
+private const val ArcRadiusDivider = 4f
+private const val ArcCenterSpacingMultiplier = 2f
+private const val ArcLeftStartAngle = 0f
+private const val ArcRightStartAngle = 180f
+private const val SweepMinimumThreshold = 0f
+private const val ArcPositionDivider = 2 //???
+
+private val SpentColor = Color(0xFFFF9800)
+private val BurnedColor = Color(0xFF2196F3)
+private val TransparentColor = Color.Transparent
 
 private fun Float.toRadians(): Float = ((this * kotlin.math.PI) / 180).toFloat()
 
@@ -22,16 +34,21 @@ fun DrawScope.drawInfinityArc(
     size: Size
 ) {
 
-    val stroke = 70f
+    val stroke = ArcStrokeWidth
     val spacing = ArcSpacingPx
-    val radius = (size.width - spacing) / 4f
-    val centerSpacing = radius * 2f
+    val radius = (size.width - spacing) / ArcRadiusDivider
+    val centerSpacing = radius * ArcCenterSpacingMultiplier
 
-    val leftCenter = Offset(size.width / 2 - centerSpacing / 2, size.height / 2)
-    val rightCenter = Offset(size.width / 2 + centerSpacing / 2, size.height / 2)
+    val leftCenter = Offset(
+        size.width / ArcPositionDivider - centerSpacing / ArcPositionDivider,
+        size.height / ArcPositionDivider
+    )
+    val rightCenter = Offset(
+        size.width / ArcPositionDivider + centerSpacing / ArcPositionDivider,
+        size.height / ArcPositionDivider)
 
-    drawArcSegment(leftCenter, spentSweep, fadeAngle, radius, stroke, Color(0xFFFF9800), 0f)
-    drawArcSegment(rightCenter, burnedSweep, fadeAngle, radius, stroke, Color(0xFF2196F3), 180f)
+    drawArcSegment(leftCenter, spentSweep, fadeAngle, radius, stroke, SpentColor, ArcLeftStartAngle)
+    drawArcSegment(rightCenter, burnedSweep, fadeAngle, radius, stroke, BurnedColor, ArcRightStartAngle)
 }
 
 private fun DrawScope.drawArcSegment(
@@ -43,19 +60,19 @@ private fun DrawScope.drawArcSegment(
     color: Color,
     baseStartAngle: Float
 ) {
-    if (sweep <= 0f) return
+    if (sweep <= SweepMinimumThreshold) return
 
     if (sweep <= fadeAngle) {
         val angleEnd = baseStartAngle + sweep
         val start = arcPoint(center, radius, baseStartAngle)
         val end = arcPoint(center, radius, angleEnd)
         drawArc(
-            brush = Brush.linearGradient(listOf(color, Color.Transparent), start, end),
+            brush = Brush.linearGradient(listOf(color, TransparentColor), start, end),
             startAngle = baseStartAngle,
             sweepAngle = sweep,
             useCenter = false,
             topLeft = Offset(center.x - radius, center.y - radius),
-            size = Size(radius * 2, radius * 2),
+            size = Size(radius * ArcPositionDivider, radius * ArcPositionDivider),
             style = Stroke(width = stroke, cap = StrokeCap.Round)
         )
     } else {
@@ -65,7 +82,7 @@ private fun DrawScope.drawArcSegment(
             sweepAngle = sweep - fadeAngle,
             useCenter = false,
             topLeft = Offset(center.x - radius, center.y - radius),
-            size = Size(radius * 2, radius * 2),
+            size = Size(radius * ArcPositionDivider, radius * ArcPositionDivider),
             style = Stroke(width = stroke, cap = StrokeCap.Round)
         )
 
@@ -74,12 +91,12 @@ private fun DrawScope.drawArcSegment(
         val start = arcPoint(center, radius, angleStart)
         val end = arcPoint(center, radius, angleEnd)
         drawArc(
-            brush = Brush.linearGradient(listOf(color, Color.Transparent), start, end),
+            brush = Brush.linearGradient(listOf(color, TransparentColor), start, end),
             startAngle = angleStart,
             sweepAngle = fadeAngle,
             useCenter = false,
             topLeft = Offset(center.x - radius, center.y - radius),
-            size = Size(radius * 2, radius * 2),
+            size = Size(radius * ArcPositionDivider, radius * ArcPositionDivider),
             style = Stroke(width = stroke, cap = StrokeCap.Butt)
         )
     }

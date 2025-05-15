@@ -13,6 +13,12 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.unit.dp
 
+// style values
+private const val SurfaceAlpha = 1f
+private val CornerRadius = 15.dp
+private val HorizontalPadding = 25.dp
+private val VerticalPadding = 16.dp
+
 @Composable
 fun BottomBarContainer(
     modifier: Modifier = Modifier,
@@ -27,10 +33,10 @@ fun BottomBarContainer(
                 boxPosition = Offset(pos.x, pos.y)
             }
             .background(
-                color = MaterialTheme.colorScheme.surface.copy(alpha = 1f),
-                shape = RoundedCornerShape(15.dp),
+                color = MaterialTheme.colorScheme.surface.copy(alpha = SurfaceAlpha),
+                shape = RoundedCornerShape(CornerRadius),
             )
-            .padding(horizontal = 25.dp, vertical = 16.dp),
+            .padding(horizontal = HorizontalPadding, vertical = VerticalPadding),
         contentAlignment = Alignment.Center
     ) {
         content()

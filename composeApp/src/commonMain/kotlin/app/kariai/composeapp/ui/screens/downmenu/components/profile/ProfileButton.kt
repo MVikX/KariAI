@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import app.kariai.composeapp.localization.t
 import app.kariai.composeapp.ui.screens.downmenu.components.DownMenuBoxContainer
 import app.kariai.shared.MR
 
@@ -19,7 +20,7 @@ fun ProfileButton () {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text("Профиль", style = MaterialTheme.typography.titleMedium)
+            Text(t("down_menu.profile"), style = MaterialTheme.typography.titleMedium)
         }
     }
 }

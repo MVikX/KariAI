@@ -7,9 +7,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,6 +17,14 @@ import app.kariai.composeapp.ui.screens.main.sections.arc.components.ArcScreenCo
 import app.kariai.composeapp.ui.screens.main.sections.arc.components.BurnedItem
 import app.kariai.composeapp.ui.screens.main.sections.arc.components.FoodItem
 import app.kariai.composeapp.ui.screens.main.components.arc.InfinityProgressArc
+
+// layout values
+private val HorizontalScreenPadding = 24.dp
+private val ArcContentPadding = 16.dp
+private val ColumnSpacing = 8.dp
+private val ColumnGap = 16.dp
+private val BottomSpacerHeight = 24.dp
+private val BetweenArcAndList = 16.dp
 
 @Composable
 fun ArcOverlayScreen(
@@ -37,7 +42,7 @@ fun ArcOverlayScreen(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 24.dp)
+                    .padding(horizontal = HorizontalScreenPadding)
                     .systemBarsPadding()
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -48,7 +53,7 @@ fun ArcOverlayScreen(
                     burnedKcal = burnedKcal,
                 )
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(BetweenArcAndList))
 
                 ArcScreenContainer(
                     modifier = Modifier.fillMaxWidth()
@@ -56,18 +61,17 @@ fun ArcOverlayScreen(
                     Row(
                         Modifier
                             .fillMaxWidth()
-                            .padding(16.dp)
+                            .padding(ArcContentPadding)
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "Съеденные",
+                                text = "Съеденные", // TODO: локализовать
                                 style = MaterialTheme.typography.titleMedium
                             )
-                            Spacer(Modifier.height(8.dp))
+                            Spacer(Modifier.height(ColumnSpacing))
 
-                            // TODO: заменить стандартные иконки на свои svg (через painterResource)
                             FoodItem(
-                                icon = Icons.Default.Search,
+                                icon = Icons.Default.Search, // TODO: заменить на кастом
                                 name = "Гречка",
                                 kcal = 250
                             )
@@ -83,14 +87,14 @@ fun ArcOverlayScreen(
                             )
                         }
 
-                        Spacer(modifier = Modifier.width(16.dp))
+                        Spacer(modifier = Modifier.width(ColumnGap))
 
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "Потраченные",
+                                text = "Потраченные", // TODO: локализовать
                                 style = MaterialTheme.typography.titleMedium
                             )
-                            Spacer(Modifier.height(8.dp))
+                            Spacer(Modifier.height(ColumnSpacing))
 
                             BurnedItem(
                                 icon = Icons.Default.Search,
@@ -106,12 +110,12 @@ fun ArcOverlayScreen(
                     }
                 }
 
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(BottomSpacerHeight))
 
                 IconButton(onClick = onClose) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = "Закрыть"
+                        contentDescription = "Закрыть" // TODO: локализовать
                     )
                 }
             }

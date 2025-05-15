@@ -12,6 +12,12 @@ import app.kariai.composeapp.components.SocialSignInButtonsRow
 import app.kariai.composeapp.components.auth.ErrorMessage
 import app.kariai.composeapp.ui.screens.login.components.Title
 
+// padding and spacing constants
+private val ScreenHorizontalPadding = 24.dp
+private val TitleBottomSpacer = 45.dp
+private val LoadingTopPadding = 16.dp
+private val SocialButtonsTopSpacer = 5.dp
+
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel,
@@ -38,14 +44,14 @@ fun LoginScreen(
         ) {
             Column(
                 modifier = Modifier
-                    .padding(horizontal = 24.dp)
+                    .padding(horizontal = ScreenHorizontalPadding)
                     .fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Title()
 
-                Spacer(modifier = Modifier.height(45.dp))
+                Spacer(modifier = Modifier.height(TitleBottomSpacer))
 
 /*
                 EmailField(uiState, viewModel)
@@ -61,7 +67,7 @@ fun LoginScreen(
  */
 
                 if (uiState.isLoading) {
-                    CircularProgressIndicator(Modifier.padding(top = 16.dp))
+                    CircularProgressIndicator(Modifier.padding(top = LoadingTopPadding))
                 }
 
                 ErrorMessage(
@@ -70,7 +76,7 @@ fun LoginScreen(
                 )
 
                 //SocialDivider()
-                Spacer(modifier = Modifier.height(5.dp))
+                Spacer(modifier = Modifier.height(SocialButtonsTopSpacer))
 
                 SocialSignInButtonsRow(
                     onGoogleClick = onGoogleClick,

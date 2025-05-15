@@ -107,3 +107,12 @@ small_all_wards:
 main_screen_arc:
   spent: "Потраченные"
   burned: "Сожженные"
+
+down_menu:
+  info_app: "О нас"
+  notification: "Напоминания"
+  premium: "Премиум"
+  profile: "Профиль"
+  fitness_goals: "Фитнес цели"
+  settings: "Настройки"
+  water: "Вода"

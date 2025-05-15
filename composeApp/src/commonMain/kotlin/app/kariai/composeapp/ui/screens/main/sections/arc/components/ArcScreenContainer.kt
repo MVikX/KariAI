@@ -9,6 +9,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+// style
+private val ContainerCornerRadius = 12.dp
+private val BorderWidth = 1.dp
+
+// colors
+private val ContainerBackgroundColor = Color(0xFF2C2C2E)
+private val BorderColor = Color.DarkGray.copy(alpha = 0.3f)
+
 @Composable
 fun ArcScreenContainer(
     modifier: Modifier = Modifier,
@@ -18,13 +26,13 @@ fun ArcScreenContainer(
     Box(
         modifier = modifier
             .background(
-                color = Color(0xFF2C2C2E),
-                shape = RoundedCornerShape(12.dp),
+                color = ContainerBackgroundColor,
+                shape = RoundedCornerShape(ContainerCornerRadius),
             )
             .border(
-                width = 1.dp,
-                color = Color.DarkGray.copy(alpha = 0.3f),
-                shape = RoundedCornerShape(12.dp)
+                width = BorderWidth,
+                color = BorderColor,
+                shape = RoundedCornerShape(ContainerCornerRadius)
             )
     ) {
         content()

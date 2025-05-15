@@ -18,6 +18,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 
+// layout constants
+private val BottomSheetHeight = 510.dp
+private val BottomSheetMaxHeightFraction = 0.65f
+private val BottomSheetOffsetHidden = 500.dp
+private val BottomSheetOffsetVisible = 0.dp
+private val BottomSheetPadding = 16.dp
+private val BottomSheetTopCornerRadius = 0.dp
+
+// opacity
+private const val BackgroundOverlayAlpha = 0.3f
+private const val BottomSheetAlpha = 0.92f
+
+// dismiss gesture threshold
+private const val DragDismissThreshold = 20
+
 @Composable
 fun BottomMenuSheet(
     visible: Boolean,
@@ -25,7 +40,9 @@ fun BottomMenuSheet(
     content: @Composable () -> Unit,
 ) {
     val transition = updateTransition(targetState = visible, label = "menu_transition")
-    val offsetY by transition.animateDp(label = "offsetY") { if (it) 0.dp else 500.dp }
+    val offsetY by transition.animateDp(label = "offsetY") {
+        if (it) BottomSheetOffsetVisible else BottomSheetOffsetHidden
+    }
 
     if (visible) {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -33,8 +50,8 @@ fun BottomMenuSheet(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.65f)
-                    .background(Color.Black.copy(alpha = 0.3f))
+                    .fillMaxHeight(BottomSheetMaxHeightFraction)
+                    .background(Color.Black.copy(alpha = BackgroundOverlayAlpha))
                     .clickable(
                         indication = null,
                         interactionSource = remember { MutableInteractionSource() }
@@ -46,12 +63,15 @@ fun BottomMenuSheet(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(510.dp)
+                    .height(BottomSheetHeight)
                     .align(Alignment.BottomCenter)
                     .offset(y = offsetY)
                     .background(
-                        MaterialTheme.colorScheme.surface.copy(alpha = 0.92f),
-                        shape = RoundedCornerShape(topStart = 0.dp, topEnd = 0.dp)
+                        MaterialTheme.colorScheme.surface.copy(alpha = BottomSheetAlpha),
+                        shape = RoundedCornerShape(
+                            topStart = BottomSheetTopCornerRadius,
+                            topEnd = BottomSheetTopCornerRadius
+                        )
                     )
                     .pointerInput(Unit) {
                         detectVerticalDragGestures(
@@ -59,13 +79,13 @@ fun BottomMenuSheet(
                                 onDismissRequest()
                             },
                             onVerticalDrag = { _, dragAmount ->
-                                if (dragAmount > 20) {
+                                if (dragAmount > DragDismissThreshold) {
                                     onDismissRequest()
                                 }
                             }
                         )
                     }
-                    .padding(16.dp)
+                    .padding(BottomSheetPadding)
             ) {
                 content()
             }
