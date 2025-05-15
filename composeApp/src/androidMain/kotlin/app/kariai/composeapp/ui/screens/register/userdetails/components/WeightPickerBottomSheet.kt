@@ -16,6 +16,25 @@ import androidx.compose.ui.window.DialogProperties
 import app.kariai.composeapp.localization.t
 import app.kariai.composeapp.resources.NutriTheme
 
+//UI
+private val DialogBackgroundAlpha = 0.7f
+private val DialogCornerRadius = 24.dp
+private val DialogWidth = 300.dp
+private val DialogPadding = 24.dp
+private val DialogTextBottomPadding = 16.dp
+private val PickerRowHeight = 250.dp
+private val PickerSpacing = 8.dp
+private val ConfirmButtonWidth = 180.dp
+private val ConfirmButtonHeight = 48.dp
+private val HeightSpacer = 24.dp
+
+//Вес
+private const val WeightMin = 30
+private const val WeightMax = 200
+private const val WeightDecimalMin = 0
+private const val WeightDecimalMax = 9
+
+
 @Composable
 actual fun WeightPickerBottomSheet(
     initialWeight: Double,
@@ -33,48 +52,48 @@ actual fun WeightPickerBottomSheet(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color.Black.copy(alpha = 0.7f)),
+                    .background(Color.Black.copy(alpha = DialogBackgroundAlpha)),
                 contentAlignment = Alignment.Center
             ) {
                 Surface(
-                    shape = RoundedCornerShape(24.dp),
+                    shape = RoundedCornerShape(DialogCornerRadius),
                     color = MaterialTheme.colorScheme.surface,
                     modifier = Modifier
-                        .width(300.dp)
+                        .width(DialogWidth)
                         .wrapContentHeight()
                 ) {
                     var selectedWhole by remember { mutableStateOf(initialWeight.toInt()) }
                     var selectedDecimal by remember { mutableStateOf(((initialWeight * 10) % 10).toInt()) }
 
                     Column(
-                        modifier = Modifier.padding(24.dp),
+                        modifier = Modifier.padding(DialogPadding),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
                             text = t("profile.choose_weight"),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onSurface,
-                            modifier = Modifier.padding(bottom = 16.dp)
+                            modifier = Modifier.padding(bottom = DialogTextBottomPadding)
                         )
 
                         Row(
-                            modifier = Modifier.height(250.dp),
+                            modifier = Modifier.height(PickerRowHeight),
                             horizontalArrangement = Arrangement.Center
                         ) {
                             WheelPicker(
-                                items = (30..200).toList(),
+                                items = (WeightMin..WeightMax).toList(),
                                 selected = selectedWhole,
                                 onSelected = { selectedWhole = it }
                             )
-                            Spacer(modifier = Modifier.width(8.dp))
+                            Spacer(modifier = Modifier.width(PickerSpacing))
                             WheelPicker(
-                                items = (0..9).toList(),
+                                items = (WeightDecimalMin..WeightDecimalMax).toList(),
                                 selected = selectedDecimal,
                                 onSelected = { selectedDecimal = it }
                             )
                         }
 
-                        Spacer(modifier = Modifier.height(24.dp))
+                        Spacer(modifier = Modifier.height(HeightSpacer))
 
                         GradientButton(
                             text = t("common.confirm"),
@@ -84,8 +103,8 @@ actual fun WeightPickerBottomSheet(
                                 onDismiss()
                             },
                             modifier = Modifier
-                                .width(180.dp)
-                                .height(48.dp)
+                                .width(ConfirmButtonWidth)
+                                .height(ConfirmButtonHeight)
                         )
                     }
                 }

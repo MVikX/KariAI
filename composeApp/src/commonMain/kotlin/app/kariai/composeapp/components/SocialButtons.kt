@@ -28,6 +28,44 @@ import dev.icerock.moko.resources.ImageResource
 import kotlinx.coroutines.delay
 
 
+// размеры и радиусы
+private val SocialButtonHeight = 56.dp
+private val AppleButtonHeight = 50.dp
+private val BorderPadding = 2.dp
+private val BorderStrokeWidth = 3.dp
+private val RoundedCornerRadius = 28.dp
+private val AppleCornerRadius = 12.dp
+private val AppleBorderWidth = 1.dp
+private val InnerIconSize = 20.dp
+private val IconBoxSize = 32.dp
+private val LargeIconSize = 40.dp
+private val HorizontalContentPadding = 20.dp
+private val TextPaddingStart = 12.dp
+private val OuterSpacing = 16.dp
+private val CircleCornerRadius = 50.dp
+private val InnerBoxCornerRadius = 8.dp
+
+// шрифт
+private val ButtonTextFontSize = 14.sp
+private val AppleLineHeight = 20.sp
+
+// цвета
+private val Orange = Color(0xFFFF9B00)
+private val Cyan = Color(0xFF1AFFFF)
+private val AppleBorderColor = Color(0xFF8E918F)
+private val AppleTextColor = Color(0xFFE3E3E3)
+private val DarkBackground = Color(0xFF121212)
+private val WhiteColor = Color.White
+private val BlackColor = Color.Black
+
+// анимация и логика
+private const val AnimationDuration = 2000
+private const val DelayDuration = 100
+private const val BlendWidth = 0.2f
+private const val Half = 0.5f
+private const val Zero = 0.0f
+private const val One = 1.0f
+
 @Composable
 fun GoogleSignButton(
     text: String,
@@ -48,9 +86,9 @@ fun GoogleSignButton(
         onClick = onClick,
         modifier = modifier
     )
-
      */
 }
+
 @Composable
 fun FacebookSignButton(
     text: String,
@@ -65,7 +103,6 @@ fun FacebookSignButton(
     )
 }
 
-
 @Composable
 fun AppleSignButton( //TODO заглушка для кнопки эпл
     text: String,
@@ -75,26 +112,25 @@ fun AppleSignButton( //TODO заглушка для кнопки эпл
     Button(
         onClick = onClick,
         modifier = modifier
-            .height(50.dp)
-            .border(1.dp, Color(0xFF8E918F), RoundedCornerShape(12.dp)),
-        shape = RoundedCornerShape(12.dp),
+            .height(AppleButtonHeight)
+            .border(AppleBorderWidth, AppleBorderColor, RoundedCornerShape(AppleCornerRadius)),
+        shape = RoundedCornerShape(AppleCornerRadius),
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color.Black,
-            contentColor = Color.White
+            containerColor = BlackColor,
+            contentColor = WhiteColor
         ),
-        contentPadding = PaddingValues(horizontal = 16.dp),
+        contentPadding = PaddingValues(horizontal = HorizontalContentPadding),
         enabled = false
     ) {
         Text(
             text = text,
-            color = Color(0xFFE3E3E3),
-            fontSize = 14.sp,
+            color = AppleTextColor,
+            fontSize = ButtonTextFontSize,
             fontWeight = FontWeight.Medium,
-            lineHeight = 20.sp
+            lineHeight = AppleLineHeight
         )
     }
 }
-
 
 @Composable
 private fun SocialSignButton( //TODO сделать автоматику цвета
@@ -105,13 +141,9 @@ private fun SocialSignButton( //TODO сделать автоматику цве�
 ) {
     Box(
         modifier = modifier
-            .height(56.dp)
+            .height(SocialButtonHeight)
             .fillMaxWidth()
-            .border(
-                width = 2.dp,
-                color = Color(0xFF1AFFFF),
-                shape = RoundedCornerShape(50)
-            )
+            .border(BorderStrokeWidth, Cyan, RoundedCornerShape(CircleCornerRadius))
             .clickable { onClick() },
         contentAlignment = Alignment.CenterStart
     ) {
@@ -119,37 +151,32 @@ private fun SocialSignButton( //TODO сделать автоматику цве�
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = HorizontalContentPadding)
         ) {
             Box(
                 modifier = Modifier
-                    .size(32.dp)
-                    .border(
-                        width = 2.dp,
-                        color = Color(0xFFFF9B00),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
+                    .size(IconBoxSize)
+                    .border(BorderStrokeWidth, Orange, RoundedCornerShape(InnerBoxCornerRadius)),
                 contentAlignment = Alignment.Center
             ) {
                 Image(
                     painter = painterResource(image),
                     contentDescription = null,
-                    modifier = Modifier.size(20.dp)
+                    modifier = Modifier.size(InnerIconSize)
                 )
             }
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(HorizontalContentPadding))
 
             Text(
                 text = text,
-                color = Color.White,
-                fontSize = 14.sp,
+                color = WhiteColor,
+                fontSize = ButtonTextFontSize,
                 fontWeight = FontWeight.Medium,
             )
         }
     }
 }
-
 
 @Composable
 fun GoogleBorderButton( //TODO добавить автоматизацию цвета
@@ -158,46 +185,37 @@ fun GoogleBorderButton( //TODO добавить автоматизацию цв�
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val orangeProgress = remember { Animatable(0f) }
+    val orangeProgress = remember { Animatable(Zero) }
 
     LaunchedEffect(Unit) {
         while (true) {
-            orangeProgress.animateTo(
-                targetValue = 1f,
-                animationSpec = tween(durationMillis = 2000, easing = LinearEasing)
-            )
-            orangeProgress.animateTo(
-                targetValue = 0f,
-                animationSpec = tween(durationMillis = 2000, easing = LinearEasing)
-            )
-            delay(100)
+            orangeProgress.animateTo(One, animationSpec = tween(AnimationDuration, easing = LinearEasing))
+            orangeProgress.animateTo(Zero, animationSpec = tween(AnimationDuration, easing = LinearEasing))
+            delay(DelayDuration.toLong())
         }
     }
 
     Box(
         modifier = modifier
-            .height(56.dp)
+            .height(SocialButtonHeight)
             .fillMaxWidth()
-            .padding(2.dp),
+            .padding(BorderPadding),
         contentAlignment = Alignment.Center
     ) {
         Canvas(modifier = Modifier.matchParentSize()) {
-            val strokeWidth = 3.dp.toPx()
-            val width = size.width
-
-            val orangeEnd = 0.5f + (orangeProgress.value * 0.5f)
-            val blendWidth = 0.2f
+            val strokeWidth = BorderStrokeWidth.toPx()
+            val orangeEnd = Half + (orangeProgress.value * Half)
 
             drawRoundRect(
                 brush = Brush.horizontalGradient(
                     colorStops = arrayOf(
-                        0.0f to Color(0xFFFF9B00),
-                        (orangeEnd - blendWidth).coerceIn(0f, 1f) to Color(0xFFFF9B00),
-                        orangeEnd.coerceIn(0f, 1f) to Color(0xFF1AFFFF),
-                        1.0f to Color(0xFF1AFFFF)
+                        Zero to Orange,
+                        (orangeEnd - BlendWidth).coerceIn(Zero, One) to Orange,
+                        orangeEnd.coerceIn(Zero, One) to Cyan,
+                        One to Cyan
                     )
                 ),
-                cornerRadius = CornerRadius(28.dp.toPx()),
+                cornerRadius = CornerRadius(RoundedCornerRadius.toPx()),
                 style = Stroke(width = strokeWidth)
             )
         }
@@ -205,28 +223,27 @@ fun GoogleBorderButton( //TODO добавить автоматизацию цв�
         Row(
             modifier = Modifier
                 .matchParentSize()
-                .clip(RoundedCornerShape(28.dp))
-                .background(Color(0xFF121212))
+                .clip(RoundedCornerShape(RoundedCornerRadius))
+                .background(DarkBackground)
                 .clickable { onClick() }
-                .padding(horizontal = 20.dp),
+                .padding(horizontal = HorizontalContentPadding),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
             Image(
                 painter = painterResource(image),
                 contentDescription = null,
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier.size(LargeIconSize)
             )
-            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(TextPaddingStart))
             Text(
                 text = text,
-                color = Color.White,
-                fontSize = 14.sp,
+                color = WhiteColor,
+                fontSize = ButtonTextFontSize,
             )
         }
     }
 }
-
 
 @Composable
 fun FacebookBorderButton( //TODO добавить автоматизацию цвета
@@ -235,46 +252,37 @@ fun FacebookBorderButton( //TODO добавить автоматизацию ц�
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val blueProgress = remember { Animatable(0f) }
+    val blueProgress = remember { Animatable(Zero) }
 
     LaunchedEffect(Unit) {
         while (true) {
-            blueProgress.animateTo(
-                targetValue = 1f,
-                animationSpec = tween(durationMillis = 2000, easing = LinearEasing)
-            )
-            blueProgress.animateTo(
-                targetValue = 0f,
-                animationSpec = tween(durationMillis = 2000, easing = LinearEasing)
-            )
-            delay(100)
+            blueProgress.animateTo(One, animationSpec = tween(AnimationDuration, easing = LinearEasing))
+            blueProgress.animateTo(Zero, animationSpec = tween(AnimationDuration, easing = LinearEasing))
+            delay(DelayDuration.toLong())
         }
     }
 
     Box(
         modifier = modifier
-            .height(56.dp)
+            .height(SocialButtonHeight)
             .fillMaxWidth()
-            .padding(2.dp),
+            .padding(BorderPadding),
         contentAlignment = Alignment.Center
     ) {
         Canvas(modifier = Modifier.matchParentSize()) {
-            val strokeWidth = 3.dp.toPx()
-            val width = size.width
-
-            val blueStart = 0.5f - (blueProgress.value * 0.5f)
-            val blendWidth = 0.2f
+            val strokeWidth = BorderStrokeWidth.toPx()
+            val blueStart = Half - (blueProgress.value * Half)
 
             drawRoundRect(
                 brush = Brush.horizontalGradient(
                     colorStops = arrayOf(
-                        0.0f to Color(0xFF1AFFFF), // синий левый край
-                        blueStart.coerceIn(0f, 1f) to Color(0xFF1AFFFF), // расширение синего
-                        (blueStart + blendWidth).coerceIn(0f, 1f) to Color(0xFFFF9B00), // начало оранжевого
-                        1.0f to Color(0xFFFF9B00) // финал оранжевого
+                        Zero to Cyan, // синий левый край
+                        blueStart.coerceIn(Zero, One) to Cyan,
+                        (blueStart + BlendWidth).coerceIn(Zero, One) to Orange,
+                        One to Orange
                     )
                 ),
-                cornerRadius = CornerRadius(28.dp.toPx()),
+                cornerRadius = CornerRadius(RoundedCornerRadius.toPx()),
                 style = Stroke(width = strokeWidth)
             )
         }
@@ -282,32 +290,27 @@ fun FacebookBorderButton( //TODO добавить автоматизацию ц�
         Row(
             modifier = Modifier
                 .matchParentSize()
-                .clip(RoundedCornerShape(28.dp))
-                .background(Color(0xFF121212))
+                .clip(RoundedCornerShape(RoundedCornerRadius))
+                .background(DarkBackground)
                 .clickable { onClick() }
-                .padding(horizontal = 20.dp),
+                .padding(horizontal = HorizontalContentPadding),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
             Image(
                 painter = painterResource(image),
                 contentDescription = null,
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier.size(LargeIconSize)
             )
-            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(TextPaddingStart))
             Text(
                 text = text,
-                color = Color.White,
-                fontSize = 14.sp
+                color = WhiteColor,
+                fontSize = ButtonTextFontSize
             )
         }
     }
 }
-
-
-
-
-
 
 @Composable
 fun SocialSignInButtonsRow(
@@ -318,7 +321,7 @@ fun SocialSignInButtonsRow(
     val isIOS = PlatformUtils.isIOS()
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(OuterSpacing),
         modifier = Modifier.fillMaxWidth()
     ) {
         GoogleSignButton(
@@ -326,7 +329,7 @@ fun SocialSignInButtonsRow(
             onClick = onGoogleClick,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp)
+                .height(SocialButtonHeight)
         )
 
         FacebookSignButton(
@@ -334,7 +337,7 @@ fun SocialSignInButtonsRow(
             onClick = onFacebookClick,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp)
+                .height(SocialButtonHeight)
         )
 
         if (isIOS) {
@@ -343,12 +346,11 @@ fun SocialSignInButtonsRow(
                 onClick = onAppleClick,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp)
+                    .height(SocialButtonHeight)
             )
         }
     }
 }
-
 
 @Composable
 fun SocialSignUpButtonsRow(
@@ -359,7 +361,7 @@ fun SocialSignUpButtonsRow(
     val isIOS = PlatformUtils.isIOS()
 
     Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(OuterSpacing),
         modifier = Modifier.fillMaxWidth()
     ) {
         GoogleSignButton(
@@ -367,7 +369,7 @@ fun SocialSignUpButtonsRow(
             onClick = onGoogleClick,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp)
+                .height(SocialButtonHeight)
         )
 
         FacebookSignButton(
@@ -375,7 +377,7 @@ fun SocialSignUpButtonsRow(
             onClick = onFacebookClick,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp)
+                .height(SocialButtonHeight)
         )
 
         if (isIOS) {
@@ -384,7 +386,7 @@ fun SocialSignUpButtonsRow(
                 onClick = onAppleClick,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp)
+                    .height(SocialButtonHeight)
             )
         }
     }

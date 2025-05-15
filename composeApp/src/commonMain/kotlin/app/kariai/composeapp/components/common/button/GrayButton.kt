@@ -13,6 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+// размеры и радиус
+private val GrayButtonHeight = 52.dp
+private val GrayButtonCornerRadius = 14.dp
+
+// альфа и стили
+private const val GrayButtonBackgroundAlpha = 0.1f
+private const val GrayButtonTextAlpha = 0.5f
+private val GrayButtonFontSize = 16.sp
+
 @Composable
 fun GrayButton(
     text: String,
@@ -21,17 +30,17 @@ fun GrayButton(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(52.dp)
+            .height(GrayButtonHeight)
             .background(
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f),
-                shape = RoundedCornerShape(14.dp),
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = GrayButtonBackgroundAlpha),
+                shape = RoundedCornerShape(GrayButtonCornerRadius),
             ),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = text,
-            fontSize = 16.sp,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+            fontSize = GrayButtonFontSize,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = GrayButtonTextAlpha)
         )
     }
 }

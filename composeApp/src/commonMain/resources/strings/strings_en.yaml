@@ -107,3 +107,12 @@ small_all_wards:
 main_screen_arc:
   spent: "Spent"
   burned: "Burned"
+
+down_menu:
+  info_app: "About Us"
+  notification: "Notification"
+  premium: "Premium"
+  profile: "Profile"
+  fitness_goals: "Fitness goals"
+  settings: "Settings"
+  water: "Water"

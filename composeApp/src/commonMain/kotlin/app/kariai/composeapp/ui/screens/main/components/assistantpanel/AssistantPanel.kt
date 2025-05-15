@@ -16,6 +16,16 @@ import app.kariai.composeapp.localization.t
 import app.kariai.shared.MR
 import dev.icerock.moko.resources.compose.painterResource
 
+private val PANEL_CORNER_RADIUS = 12.dp
+private val PANEL_HORIZONTAL_PADDING = 16.dp
+private val PANEL_VERTICAL_PADDING = 12.dp
+private val ROBOT_IMAGE_HEIGHT = 30.dp
+private val SPACER_WIDTH = 8.dp
+private val FONT_SIZE = 16.sp
+
+private const val SURFACE_ALPHA = 1f
+private const val TEXT_OPACITY = 0.8f
+
 @Composable
 fun AssistantPanel(
     onClick: () -> Unit = {}
@@ -25,10 +35,10 @@ fun AssistantPanel(
             .fillMaxWidth()
             .clickable { onClick() }
             .background(
-                color = MaterialTheme.colorScheme.surface.copy(alpha = 1f),
-                shape = RoundedCornerShape(12.dp)
+                color = MaterialTheme.colorScheme.surface.copy(alpha = SURFACE_ALPHA),
+                shape = RoundedCornerShape(PANEL_CORNER_RADIUS)
             )
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+            .padding(horizontal = PANEL_HORIZONTAL_PADDING, vertical = PANEL_VERTICAL_PADDING),
         contentAlignment = Alignment.CenterStart
     ) {
         Row(
@@ -40,23 +50,22 @@ fun AssistantPanel(
                 Image(
                     painter = painterResource(MR.images.kariai_robot),
                     contentDescription = null,
-                    modifier = Modifier
-                        .height(30.dp)
+                    modifier = Modifier.height(ROBOT_IMAGE_HEIGHT)
                 )
 
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(SPACER_WIDTH))
 
                 Text(
                     text = t("assistant_words.assistant") + "...",
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
-                    fontSize = 16.sp
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = TEXT_OPACITY),
+                    fontSize = FONT_SIZE
                 )
             }
 
             Text(
                 text = t("small_all_wards.open"),
                 color = MaterialTheme.colorScheme.onSurface,
-                fontSize = 16.sp
+                fontSize = FONT_SIZE
             )
         }
     }

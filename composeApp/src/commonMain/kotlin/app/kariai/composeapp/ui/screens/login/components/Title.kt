@@ -16,45 +16,70 @@ import app.kariai.composeapp.localization.t
 import app.kariai.shared.MR
 import dev.icerock.moko.resources.compose.painterResource
 
+// animation values
+private const val FloatYInitial = -138f
+private const val FloatYTarget = -148f
+private const val RotationStart = -3f
+private const val RotationEnd = 3f
+private const val FloatYOffsetAdjustment = 6
+
+private const val FloatYDuration = 1500
+private const val RotationDuration = 2000
+
+// sizes and spacing
+private val HorizontalPadding = 16.dp
+private val LogoFontSize = 80.sp
+private val LogoLineHeight = 44.sp
+private val LogoSpacerHeight = 42.dp
+private val BoxHeight = 200.dp
+private val RobotHeight = 90.dp
+private val BelowBoxSpacer = 30.dp
+private val HelloFontSize = 30.sp
+private val HelloLineHeight = 44.sp
+private val SubTextSpacer = 8.dp
+private val SubTextFontSize = 18.sp
+private val SubTextLineHeight = 24.sp
+private const val SubTextAlpha = 0.7f
+
 @Composable
 fun Title() {
     val transition = rememberInfiniteTransition()
 
     val floatY by transition.animateFloat(
-        initialValue = -138f,
-        targetValue = -148f,
+        initialValue = FloatYInitial,
+        targetValue = FloatYTarget,
         animationSpec = infiniteRepeatable(
-            animation = tween(1500, easing = LinearEasing),
+            animation = tween(FloatYDuration, easing = LinearEasing),
             repeatMode = RepeatMode.Reverse
         )
     )
 
     val rotation by transition.animateFloat(
-        initialValue = -3f,
-        targetValue = 3f,
+        initialValue = RotationStart,
+        targetValue = RotationEnd,
         animationSpec = infiniteRepeatable(
-            animation = tween(2000, easing = LinearEasing),
+            animation = tween(RotationDuration, easing = LinearEasing),
             repeatMode = RepeatMode.Reverse
         )
     )
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(horizontal = 16.dp)
+        modifier = Modifier.padding(horizontal = HorizontalPadding)
     ) {
         Text(
             text = "KariAI",
             style = MaterialTheme.typography.headlineMedium.copy(
                 fontWeight = FontWeight.ExtraBold,
-                fontSize = 80.sp,
-                lineHeight = 44.sp
+                fontSize = LogoFontSize,
+                lineHeight = LogoLineHeight
             )
         )
 
-        Spacer(modifier = Modifier.height(42.dp))
+        Spacer(modifier = Modifier.height(LogoSpacerHeight))
 
         Box(
-            modifier = Modifier.height(200.dp),
+            modifier = Modifier.height(BoxHeight),
             contentAlignment = Alignment.BottomCenter
         ) {
             // Анимированный робот
@@ -62,8 +87,8 @@ fun Title() {
                 painter = painterResource(MR.images.kariai_robot),
                 contentDescription = null,
                 modifier = Modifier
-                    .height(90.dp)
-                    .offset(y = floatY.dp + 6.dp)
+                    .height(RobotHeight)
+                    .offset(y = floatY.dp + FloatYOffsetAdjustment.dp)
                     .graphicsLayer {
                         rotationZ = rotation
                     }
@@ -73,32 +98,32 @@ fun Title() {
             Image(
                 painter = painterResource(MR.images.main_logo),
                 contentDescription = null,
-                modifier = Modifier.height(200.dp)
+                modifier = Modifier.height(BoxHeight)
             )
         }
 
-        Spacer(modifier = Modifier.height(30.dp))
+        Spacer(modifier = Modifier.height(BelowBoxSpacer))
 
         Text(
             text = t("home.hello"),
             style = MaterialTheme.typography.headlineMedium.copy(
                 fontWeight = FontWeight.ExtraBold,
-                fontSize = 30.sp,
-                lineHeight = 44.sp
+                fontSize = HelloFontSize,
+                lineHeight = HelloLineHeight
             ),
             color = MaterialTheme.colorScheme.onBackground
         )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(SubTextSpacer))
 
         Text(
             text = t("home.hello_in_down"),
             style = MaterialTheme.typography.bodyLarge.copy(
                 fontWeight = FontWeight.Medium,
-                fontSize = 18.sp,
-                lineHeight = 24.sp
+                fontSize = SubTextFontSize,
+                lineHeight = SubTextLineHeight
             ),
-            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = SubTextAlpha)
         )
     }
 }

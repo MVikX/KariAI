@@ -12,6 +12,15 @@ import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
 
+// размеры
+private val SearchFieldHeight = 58.dp
+private val SearchFieldCornerRadius = 12.dp
+private val SearchFieldStartPadding = 10.dp
+private val SearchFieldIconSize = 40.dp
+
+// альфа
+private const val SearchFieldUnfocusedBorderAlpha = 0.2f
+
 @Composable
 fun SearchField(
     label: String,
@@ -23,26 +32,26 @@ fun SearchField(
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(label)},
+        label = { Text(label) },
         leadingIcon = {
             if (image != null) {
                 Image(
                     painter = painterResource(image),
                     contentDescription = null,
                     modifier = Modifier
-                        .height(40.dp)
-                        .padding(start = 10.dp)
+                        .height(SearchFieldIconSize)
+                        .padding(start = SearchFieldStartPadding)
                 )
             }
         },
         modifier = modifier
             .fillMaxWidth()
-            .height(58.dp)
-            .padding(start = 10.dp),
-        shape = RoundedCornerShape(12.dp),
+            .height(SearchFieldHeight)
+            .padding(start = SearchFieldStartPadding),
+        shape = RoundedCornerShape(SearchFieldCornerRadius),
         singleLine = true,
         colors = OutlinedTextFieldDefaults.colors(
-            unfocusedBorderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f),
+            unfocusedBorderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = SearchFieldUnfocusedBorderAlpha),
             focusedBorderColor = MaterialTheme.colorScheme.primary
         )
     )

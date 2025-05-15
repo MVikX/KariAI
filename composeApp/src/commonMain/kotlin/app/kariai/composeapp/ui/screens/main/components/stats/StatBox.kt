@@ -17,6 +17,13 @@ import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
 
+// dimensions
+private val IconHeight = 40.dp
+private val SpacerHeight = 10.dp
+
+// visual
+private const val SubtitleAlpha = 0.7f
+
 @Composable
 fun StatBox(
     title: String,
@@ -42,11 +49,11 @@ fun StatBox(
                 Image(
                     painter = painterResource(image),
                     contentDescription = null,
-                    modifier = Modifier.height(40.dp)
+                    modifier = Modifier.height(IconHeight)
                 )
             }
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(SpacerHeight))
 
             Text(
                 text = renderedValue,
@@ -59,7 +66,7 @@ fun StatBox(
             Text(
                 text = title,
                 style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = SubtitleAlpha),
                 textAlign = TextAlign.Center,
             )
         }

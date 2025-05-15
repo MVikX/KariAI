@@ -16,6 +16,11 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.unit.dp
 
+// visual
+private const val BackgroundAlpha = 1f
+private val CornerRadius = 12.dp
+private val ContainerPadding = 12.dp
+
 @Composable
 fun WeekSummaryContainer(
     modifier: Modifier = Modifier,
@@ -36,10 +41,10 @@ fun WeekSummaryContainer(
                 }
             }
             .background(
-                color = MaterialTheme.colorScheme.surface.copy(alpha = 1f),
-                shape = RoundedCornerShape(12.dp),
+                color = MaterialTheme.colorScheme.surface.copy(alpha = BackgroundAlpha),
+                shape = RoundedCornerShape(CornerRadius),
             )
-            .padding(12.dp)
+            .padding(ContainerPadding)
     ) {
         content()
     }

@@ -7,5 +7,5 @@ import app.kariai.storage.preferences.UserPreferencesImpl
 class AndroidRegisterViewModel (
     prefs: UserPreferencesImpl
 ) : ViewModel() {
-    val delegate = app.kariai.shared.presentation.auth.register.RegisterViewModel(prefs)
+    val delegate = RegisterViewModel(prefs)
 }

@@ -10,6 +10,12 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.unit.dp
 import app.kariai.composeapp.localization.t
 
+// spacing
+private val SummaryVerticalSpacing = 8.dp
+
+// fallback values
+private const val FallbackFloat = 0f
+
 @Composable
 fun WeekCircleSummaryRow(
     spentList: List<Float>,
@@ -32,7 +38,7 @@ fun WeekCircleSummaryRow(
         onClick = onClick
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(SummaryVerticalSpacing),
             modifier = Modifier.fillMaxWidth()
         ) {
             // заголовок
@@ -50,8 +56,8 @@ fun WeekCircleSummaryRow(
                 days.indices.forEach { index ->
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         MiniArcIndicator(
-                            spentProgress = spentList.getOrElse(index) { 0f },
-                            eatenProgress = eatenList.getOrElse(index) { 0f },
+                            spentProgress = spentList.getOrElse(index) { FallbackFloat },
+                            eatenProgress = eatenList.getOrElse(index) { FallbackFloat },
                             dayLabel = days[index]
                         )
                     }

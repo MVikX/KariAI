@@ -9,21 +9,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+// style values
+private val BubbleCornerRadius = 16.dp
+private val BubbleElevation = 2.dp
+private val HorizontalPadding = 8.dp
+private val InnerPadding = 12.dp
+
 @Composable
 fun AssistantMessageBubble(
     text: String? = null,
     content: @Composable (() -> Unit)? = null
 ) {
     Surface(
-        shape = RoundedCornerShape(16.dp),
-        tonalElevation = 2.dp,
+        shape = RoundedCornerShape(BubbleCornerRadius),
+        tonalElevation = BubbleElevation,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp)
+            .padding(horizontal = HorizontalPadding)
     ) {
         Box(
             contentAlignment = Alignment.CenterStart,
-            modifier = Modifier.padding(12.dp)
+            modifier = Modifier.padding(InnerPadding)
         ) {
             if (content != null) {
                 content()

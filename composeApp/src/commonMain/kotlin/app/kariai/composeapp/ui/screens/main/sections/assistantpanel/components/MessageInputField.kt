@@ -9,6 +9,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+// layout values
+private val OuterPadding = 8.dp
+private val CornerRadius = 16.dp
+private val ButtonContentHorizontal = 16.dp
+private val ButtonContentVertical = 12.dp
+private val InputToButtonSpacer = 8.dp
+private val InputElevation = 2.dp
+
+// proportions
+private const val InputWeight = 1f
+
 @Composable
 fun MessageInputField(
     inputText: String,
@@ -19,18 +30,18 @@ fun MessageInputField(
         modifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.surface)
-            .padding(8.dp),
+            .padding(OuterPadding),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Surface(
-            shape = RoundedCornerShape(16.dp),
-            tonalElevation = 2.dp,
-            modifier = Modifier.weight(1f)
+            shape = RoundedCornerShape(CornerRadius),
+            tonalElevation = InputElevation,
+            modifier = Modifier.weight(InputWeight)
         ) {
             OutlinedTextField(
                 value = inputText,
                 onValueChange = onInputTextChange,
-                placeholder = { Text("Type a message...") },
+                placeholder = { Text("Type a message...") }, // TODO: локализовать
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -42,7 +53,7 @@ fun MessageInputField(
             )
         }
 
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(InputToButtonSpacer))
 
         Button(
             onClick = {
@@ -50,10 +61,13 @@ fun MessageInputField(
                     onSendMessage(inputText)
                 }
             },
-            shape = RoundedCornerShape(16.dp),
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp)
+            shape = RoundedCornerShape(CornerRadius),
+            contentPadding = PaddingValues(
+                horizontal = ButtonContentHorizontal,
+                vertical = ButtonContentVertical
+            )
         ) {
-            Text("Send")
+            Text("Send") // TODO: локализовать
         }
     }
 }

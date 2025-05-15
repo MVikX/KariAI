@@ -1,5 +1,6 @@
 package app.kariai.composeapp.ui.screens.register.userdetails.components
-//todo баганная реализация колеса (-1 при старте)
+// TODO баганная реализация колеса (-1 при старте) Добавить общую тему цвета
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.*
@@ -20,15 +21,37 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 
+// UI - размеры, отступы, шрифты
+private val WheelItemHeight = 50.dp
+private val WheelWidth = 100.dp
+private val ArraSpacedBy = 0.dp
+
+private val SelectedFontSize = 30.sp
+private val UnselectedFontSize = 18.sp
+
+// цвета и альфа
+private const val UnselectedTextAlpha = 0.4f
+private const val ShadowAlpha = 0.4f
+
+// логика расчётов и поведения
+private const val VisibleItemsCount = 7
+private const val CenterPositionDivisor = 2
+private const val CenterOffsetFraction = 0.5f
+
+// прокрутка и инициализация
+private const val InitialScrollDelayMs = 100
+private const val NotFoundIndex = -1
+private const val ScrollToStartIndex = 0
+
 @Composable
 actual fun <T> WheelPicker(
     items: List<T>,
     selected: T,
-    onSelected: (T) -> Unit
+    onSelected: (T) -> Unit,
 ) {
-    val itemHeight: Dp = 50.dp
-    val visibleItemsCount = 7
-    val centerOffset = visibleItemsCount / 2
+    val itemHeight: Dp = WheelItemHeight
+    val visibleItemsCount = VisibleItemsCount
+    val centerOffset = visibleItemsCount / CenterPositionDivisor
     val listState = rememberLazyListState()
     val flingBehavior = rememberSnapFlingBehavior(listState)
     val density = LocalDensity.current
@@ -37,27 +60,24 @@ actual fun <T> WheelPicker(
 
     var initialScrollDone by remember { mutableStateOf(false) }
 
-
     LaunchedEffect(Unit) {
         if (!initialScrollDone) {
             val index = items.indexOf(selected)
-            if (index != -1) {
-                delay(100)
+            if (index != NotFoundIndex) {
+                delay(InitialScrollDelayMs.toLong())
                 listState.scrollToItem(index)
             }
             initialScrollDone = true
         }
     }
 
-
-
+    // определение текущего центрального индекса
     val centerIndex by remember {
         derivedStateOf {
             val exactOffset = listState.firstVisibleItemScrollOffset / itemHeightPx
-            (listState.firstVisibleItemIndex + exactOffset - 0.5f).toInt()
+            (listState.firstVisibleItemIndex + exactOffset - CenterOffsetFraction).toInt()
         }
     }
-
 
     LaunchedEffect(centerIndex) {
         items.getOrNull(centerIndex)?.let { centered ->
@@ -65,26 +85,25 @@ actual fun <T> WheelPicker(
         }
     }
 
-
+    // защита от выхода за границы при прокрутке
     LaunchedEffect(listState.isScrollInProgress) {
-        if (!listState.isScrollInProgress && (centerIndex < 0 || centerIndex > items.lastIndex)) {
-            val safeIndex = centerIndex.coerceIn(0, items.lastIndex)
+        if (!listState.isScrollInProgress && (centerIndex < ScrollToStartIndex || centerIndex > items.lastIndex)) {
+            val safeIndex = centerIndex.coerceIn(ScrollToStartIndex, items.lastIndex)
             listState.animateScrollToItem(safeIndex)
         }
     }
 
-
     Box(
         modifier = Modifier
             .height(itemHeight * visibleItemsCount)
-            .width(100.dp),
+            .width(WheelWidth),
         contentAlignment = Alignment.Center
     ) {
         LazyColumn(
             state = listState,
             flingBehavior = flingBehavior,
             contentPadding = PaddingValues(vertical = itemHeight * centerOffset),
-            verticalArrangement = Arrangement.spacedBy(0.dp),
+            verticalArrangement = Arrangement.spacedBy(ArraSpacedBy),
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxSize()
         ) {
@@ -93,12 +112,12 @@ actual fun <T> WheelPicker(
 
                 Text(
                     text = item.toString(),
-                    fontSize = if (isSelected) 30.sp else 18.sp,
+                    fontSize = if (isSelected) SelectedFontSize else UnselectedFontSize,
                     fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal,
                     color = if (isSelected)
                         Color.White
                     else
-                        MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
+                        MaterialTheme.colorScheme.onSurface.copy(alpha = UnselectedTextAlpha),
                     modifier = Modifier
                         .height(itemHeight)
                         .fillMaxWidth()
@@ -107,7 +126,7 @@ actual fun <T> WheelPicker(
             }
         }
 
-
+        // затемнение сверху
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -115,12 +134,12 @@ actual fun <T> WheelPicker(
                 .align(Alignment.TopCenter)
                 .background(
                     Brush.verticalGradient(
-                        listOf(Color.Black.copy(alpha = 0.4f), Color.Transparent)
+                        listOf(Color.Black.copy(alpha = ShadowAlpha), Color.Transparent)
                     )
                 )
         )
 
-
+        // затемнение снизу
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -128,7 +147,7 @@ actual fun <T> WheelPicker(
                 .align(Alignment.BottomCenter)
                 .background(
                     Brush.verticalGradient(
-                        listOf(Color.Transparent, Color.Black.copy(alpha = 0.4f))
+                        listOf(Color.Transparent, Color.Black.copy(alpha = ShadowAlpha))
                     )
                 )
         )

@@ -1,5 +1,5 @@
 package app.kariai.composeapp.components.common.button
-
+//TODO добавить цвет в тему
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -19,21 +19,28 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+// cтиль
+private val GradientStartColor = Color(0xFF7F00FF)
+private val GradientEndColor = Color(0xFFE100FF)
+
+// hазмеры и стиль по умолчанию
+private val DefaultButtonHeight = 50.dp
+private val DefaultCornerRadius = 16.dp
+private val DefaultFontSize = 16.sp
+private val DefaultTextColor = Color.White
+
 @Composable
 fun GradientButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    height: Dp = 50.dp,
-    shape: Shape = RoundedCornerShape(16.dp),
-    textColor: Color = Color.White,
-    fontSize: TextUnit = 16.sp,
+    height: Dp = DefaultButtonHeight,
+    shape: Shape = RoundedCornerShape(DefaultCornerRadius),
+    textColor: Color = DefaultTextColor,
+    fontSize: TextUnit = DefaultFontSize,
 ) {
     val gradientBrush = Brush.horizontalGradient(
-        colors = listOf(
-            Color(0xFF7F00FF),
-            Color(0xFFE100FF)
-        )
+        colors = listOf(GradientStartColor, GradientEndColor)
     )
 
     Box(
@@ -43,7 +50,7 @@ fun GradientButton(
             .background(
                 brush = gradientBrush,
                 shape = shape
-                )
+            )
             .clickable(onClick = onClick),
         contentAlignment = Alignment.Center
     ) {

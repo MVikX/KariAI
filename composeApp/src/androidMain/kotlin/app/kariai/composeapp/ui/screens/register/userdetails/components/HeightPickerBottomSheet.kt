@@ -15,58 +15,74 @@ import app.kariai.composeapp.localization.t
 import app.kariai.composeapp.resources.NutriTheme
 import app.kariai.composeapp.components.common.button.GradientButton
 
+private val DialogBackgroundAlpha = 0.7f
+
+private val DialogCornerRadius = 24.dp
+private val DialogWidth = 300.dp
+private val DialogPadding = 24.dp
+private val DialogTextBottomPadding = 16.dp
+
+private val WheelPickerHeight = 250.dp
+private val ConfirmButtonWidth = 180.dp
+private val ConfirmButtonHeight = 48.dp
+
+private val HeightRangeStart = 120
+private val HeightRangeEnd = 230
+
+private val HeightSpacer = 24.dp
+
 @Composable
 actual fun HeightPickerBottomSheet(
     initialHeight: Int,
     onConfirm: (Int) -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(
             dismissOnClickOutside = true,
-            usePlatformDefaultWidth = false
+            usePlatformDefaultWidth = false,
         )
     ) {
         NutriTheme {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color.Black.copy(alpha = 0.7f)),
+                    .background(Color.Black.copy(alpha = DialogBackgroundAlpha)),
                 contentAlignment = Alignment.Center
             ) {
                 Surface(
-                    shape = RoundedCornerShape(24.dp),
+                    shape = RoundedCornerShape(DialogCornerRadius),
                     color = MaterialTheme.colorScheme.surface,
                     modifier = Modifier
-                        .width(300.dp)
+                        .width(DialogWidth)
                         .wrapContentHeight()
                 ) {
                     var selectedHeight by remember { mutableStateOf(initialHeight) }
 
                     Column(
-                        modifier = Modifier.padding(24.dp),
+                        modifier = Modifier.padding(DialogPadding),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
                             text = t("profile.choose_height"),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onSurface,
-                            modifier = Modifier.padding(bottom = 16.dp)
+                            modifier = Modifier.padding(bottom = DialogTextBottomPadding)
                         )
 
                         Box(
-                            modifier = Modifier.height(250.dp),
+                            modifier = Modifier.height(WheelPickerHeight),
                             contentAlignment = Alignment.Center
                         ) {
                             WheelPicker(
-                                items = (120..230).toList(),
+                                items = (HeightRangeStart..HeightRangeEnd).toList(),
                                 selected = selectedHeight,
                                 onSelected = { selectedHeight = it }
                             )
                         }
 
-                        Spacer(modifier = Modifier.height(24.dp))
+                        Spacer(modifier = Modifier.height(HeightSpacer))
 
                         GradientButton(
                             text = t("common.confirm"),
@@ -75,8 +91,8 @@ actual fun HeightPickerBottomSheet(
                                 onDismiss()
                             },
                             modifier = Modifier
-                                .width(180.dp)
-                                .height(48.dp)
+                                .width(ConfirmButtonWidth)
+                                .height(ConfirmButtonHeight)
                         )
                     }
                 }
