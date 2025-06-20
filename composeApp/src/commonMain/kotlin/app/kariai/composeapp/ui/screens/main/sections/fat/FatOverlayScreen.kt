@@ -24,7 +24,7 @@ fun FatOverlayScreen(onClose: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = "жир заглушка", //TODO заглушка жира
+                    text = "жир stub", //TODO stub жира
                     style = MaterialTheme.typography.headlineLarge
                 )
             }

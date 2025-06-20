@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.register.components
-/* TODO отключена кнопка регестрации
+/* TODO registration button is disabled
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

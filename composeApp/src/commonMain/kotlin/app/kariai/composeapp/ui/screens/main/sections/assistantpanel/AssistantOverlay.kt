@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.main.sections.assistantpanel
-//TODO ФЕЙК СООБЩЕНИЯ
+//TODO FAKE MESSAGES
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

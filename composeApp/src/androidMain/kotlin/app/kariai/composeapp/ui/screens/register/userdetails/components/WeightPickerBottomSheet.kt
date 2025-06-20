@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.register.userdetails.components
-//TODO ДОБАВИТЬ ТРАНСЛИТОР
+//TODO ADD TRANSLITERATOR
 import androidx.compose.foundation.background
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -28,7 +28,7 @@ private val ConfirmButtonWidth = 180.dp
 private val ConfirmButtonHeight = 48.dp
 private val HeightSpacer = 24.dp
 
-//Вес
+//Weight
 private const val WeightMin = 30
 private const val WeightMax = 200
 private const val WeightDecimalMin = 0

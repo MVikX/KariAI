@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.main.sections.arc.components
-//TODO добавить поддержку кастомных рисунков + локализация
+//TODO add support for custom drawings + localization
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -7,8 +7,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import dev.icerock.moko.resources.ImageResource
+import dev.icerock.moko.resources.compose.painterResource
 
 // layout values
 private val ItemVerticalPadding = 8.dp
@@ -18,7 +19,7 @@ private const val TextColumnWeight = 1f
 
 @Composable
 fun FoodItem(
-    icon: ImageVector,
+    icon: ImageResource,
     name: String,
     kcal: Int
 ) {
@@ -29,7 +30,7 @@ fun FoodItem(
             .padding(vertical = ItemVerticalPadding)
     ) {
         Icon(
-            imageVector = icon,
+            painter = painterResource(icon),
             contentDescription = name,
             modifier = Modifier.size(IconSize),
             tint = MaterialTheme.colorScheme.onSurfaceVariant

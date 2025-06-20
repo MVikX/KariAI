@@ -41,7 +41,7 @@ fun MessageInputField(
             OutlinedTextField(
                 value = inputText,
                 onValueChange = onInputTextChange,
-                placeholder = { Text("Type a message...") }, // TODO: локализовать
+                placeholder = { Text("Type a message...") }, // TODO: localized
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
                 colors = OutlinedTextFieldDefaults.colors(
@@ -67,7 +67,7 @@ fun MessageInputField(
                 vertical = ButtonContentVertical
             )
         ) {
-            Text("Send") // TODO: локализовать
+            Text("Send") // TODO: localized
         }
     }
 }

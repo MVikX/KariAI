@@ -1,6 +1,6 @@
 package app.kariai.composeapp.localization
 
 actual suspend fun loadYaml(language: String): String {
-    //TODO сделать реалицазию локализации на ISO
+    //TODO implement localization based on ISO
     return ""
 }

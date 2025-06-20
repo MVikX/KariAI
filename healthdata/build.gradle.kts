@@ -12,8 +12,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":storage"))
                 implementation(libs.coroutines)
+                implementation(libs.kotlinx.datetime)
+
+                implementation(libs.khealth)
             }
         }
         val commonTest by getting {
@@ -24,8 +26,6 @@ kotlin {
 
         val androidMain by getting {
             dependencies {
-                implementation(libs.androidx.core.ktx)
-                implementation(libs.play.services.fitness)
             }
         }
 
@@ -42,7 +42,6 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
-
             }
         }
 

@@ -34,8 +34,8 @@ private val DarkColorScheme = darkColorScheme(
     onSurface = Color(0xFFE0E0E0),
 )
 
-val telegram_color = Color(0xFF0088CC) // бирюзовый
-val google_color = Color(0xFFDB4437)   // красноватый
+val telegram_color = Color(0xFF0088CC)
+val google_color = Color(0xFFDB4437)
 
 @Composable
 fun NutriTheme(

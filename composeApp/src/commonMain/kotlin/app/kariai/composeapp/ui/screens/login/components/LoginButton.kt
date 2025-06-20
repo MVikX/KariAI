@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.login.components
-/* TODO отключена кнопка входа
+/* TODO login button is disabled
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

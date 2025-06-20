@@ -52,6 +52,8 @@ androidx_browser = "1.4.0"
 
 playServicesFitness = "21.1.0"
 
+khealth = "1.1.0"
+
 [libraries]
 
 # Kotlin
@@ -107,6 +109,8 @@ ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 
 androidx-browser = { module = "androidx.browser:browser", version.ref = "androidx_browser" }
 
+khealth = { module = "io.github.shubhamsinghshubham777:khealth", version.ref = "khealth" }
+
 # Koin DI
 koinCore = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koinCompose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
@@ -129,7 +133,6 @@ yamlkt = { module = "net.mamoe.yamlkt:yamlkt", version.ref = "yamlkt" }
 mokoResources = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
 
 play-services-fitness = { group = "com.google.android.gms", name = "play-services-fitness", version.ref = "playServicesFitness" }
-
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

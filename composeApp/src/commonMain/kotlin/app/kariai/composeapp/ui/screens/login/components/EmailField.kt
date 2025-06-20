@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.login.components
-/* TODO отключен ввод почты
+/* TODO email input is disabled
 import androidx.compose.runtime.Composable
 import localization.t
 import org.example.kariai.resources.GlassTextField

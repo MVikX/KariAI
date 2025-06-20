@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.main.sections.assistantpanel
-//TODO ФЕЙК СООБЩЕНИЯ
+//TODO FAKE MESSAGES
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme

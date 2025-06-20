@@ -24,7 +24,7 @@ fun GoalsOverlayScreen(onClose: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = "goals заглушка", //TODO заглушка ачивок
+                    text = "goals stub", //TODO stub ачивок
                     style = MaterialTheme.typography.headlineLarge,
                 )
             }

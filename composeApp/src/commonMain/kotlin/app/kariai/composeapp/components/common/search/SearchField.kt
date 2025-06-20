@@ -12,13 +12,13 @@ import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
 
-// размеры
+// sizes
 private val SearchFieldHeight = 58.dp
 private val SearchFieldCornerRadius = 12.dp
 private val SearchFieldStartPadding = 10.dp
 private val SearchFieldIconSize = 40.dp
 
-// альфа
+// alpha
 private const val SearchFieldUnfocusedBorderAlpha = 0.2f
 
 @Composable

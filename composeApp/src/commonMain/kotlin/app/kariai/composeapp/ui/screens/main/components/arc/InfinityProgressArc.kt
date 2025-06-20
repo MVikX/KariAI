@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.main.components.arc
-//TODO требуется автоматика в цифрах калорий (константы)
+//TODO automation required in calorie numbers (constants)
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.kariai.composeapp.localization.t
 
-//TODO создать автоматический счёт
+//TODO implement automatic counter
 const val maxSpentKcal = 3000
 const val maxBurnedKcal = 3000
 
