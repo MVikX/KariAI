@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.register.components
-/* TODO отключен повторный ввод пароля
+/* TODO disable repeated password entry
 import androidx.compose.runtime.Composable
 import localization.t
 import org.example.kariai.resources.GlassTextField

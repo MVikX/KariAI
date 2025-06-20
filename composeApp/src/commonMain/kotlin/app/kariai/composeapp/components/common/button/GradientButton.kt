@@ -1,5 +1,5 @@
 package app.kariai.composeapp.components.common.button
-//TODO добавить цвет в тему
+//TODO add color to theme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -19,11 +19,11 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-// cтиль
+// style
 private val GradientStartColor = Color(0xFF7F00FF)
 private val GradientEndColor = Color(0xFFE100FF)
 
-// hазмеры и стиль по умолчанию
+// default sizes and style
 private val DefaultButtonHeight = 50.dp
 private val DefaultCornerRadius = 16.dp
 private val DefaultFontSize = 16.sp

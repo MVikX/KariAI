@@ -22,18 +22,18 @@ fun ExpandingOverlay(
     onDismiss: () -> Unit,
     content: @Composable BoxScope.() -> Unit,
 ) {
-    //TODO автоматику цвета сделать
+    //TODO automate color logic
     val colorBlack = Color.Black
 
 
-    //анимация масштабирования
+    //scaling animation
     val scale by animateFloatAsState(
         targetValue = if (isVisible) 1f else 0f,
         label = "scale"
     )
 
 
-    //фон затемнения
+    //background dimming
     if (isVisible || scale > 0f) {
         Box(
             modifier = Modifier
@@ -60,6 +60,6 @@ fun ExpandingOverlay(
 }
 
 
-//TODO заглушки для размеров экрана
+//TODO stubs for screen size
 fun getScreenWidth(): Int = 1080
 fun getScreenHeight(): Int = 1920

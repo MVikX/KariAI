@@ -24,7 +24,7 @@ fun CarbsOverlayScreen(onClose: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = "carbs заглушка", //TODO заглушка carbs
+                    text = "carbs stub", //TODO stub carbs
                     style = MaterialTheme.typography.headlineLarge
                 )
             }

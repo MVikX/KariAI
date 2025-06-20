@@ -5,5 +5,5 @@ import app.kariai.composeapp.ui.screens.register.userdetails.components.DatePick
 
 @Composable
 actual fun CreateDatePickerController(): DatePickerController {
-    return app.kariai.composeapp.ui.screens.register.userdetails.components.DatePickerController()
+    return DatePickerController()
 }

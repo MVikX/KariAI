@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.main.components.week
-//TODO добавить локализацию
+//TODO add localization
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -41,14 +41,14 @@ fun WeekCircleSummaryRow(
             verticalArrangement = Arrangement.spacedBy(SummaryVerticalSpacing),
             modifier = Modifier.fillMaxWidth()
         ) {
-            // заголовок
+            // title
             Text(
                 text = t("week.this_week"),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface
             )
 
-            // мини-кружки
+            // mini circles
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly

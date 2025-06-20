@@ -1,6 +1,6 @@
 package app.kariai.composeapp.components
 
-//TODO переделать кнопки на нормальные + одобренные + логику
+//TODO remake the buttons properly + approved + logic
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
@@ -28,7 +28,7 @@ import dev.icerock.moko.resources.ImageResource
 import kotlinx.coroutines.delay
 
 
-// размеры и радиусы
+// sizes and corner radii
 private val SocialButtonHeight = 56.dp
 private val AppleButtonHeight = 50.dp
 private val BorderPadding = 2.dp
@@ -45,11 +45,11 @@ private val OuterSpacing = 16.dp
 private val CircleCornerRadius = 50.dp
 private val InnerBoxCornerRadius = 8.dp
 
-// шрифт
+// font
 private val ButtonTextFontSize = 14.sp
 private val AppleLineHeight = 20.sp
 
-// цвета
+// colors
 private val Orange = Color(0xFFFF9B00)
 private val Cyan = Color(0xFF1AFFFF)
 private val AppleBorderColor = Color(0xFF8E918F)
@@ -58,7 +58,7 @@ private val DarkBackground = Color(0xFF121212)
 private val WhiteColor = Color.White
 private val BlackColor = Color.Black
 
-// анимация и логика
+// animation and logic
 private const val AnimationDuration = 2000
 private const val DelayDuration = 100
 private const val BlendWidth = 0.2f
@@ -104,7 +104,7 @@ fun FacebookSignButton(
 }
 
 @Composable
-fun AppleSignButton( //TODO заглушка для кнопки эпл
+fun AppleSignButton( //TODO apple button stub
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -133,7 +133,7 @@ fun AppleSignButton( //TODO заглушка для кнопки эпл
 }
 
 @Composable
-private fun SocialSignButton( //TODO сделать автоматику цвета
+private fun SocialSignButton( //TODO implement color automation
     image: ImageResource,
     text: String,
     onClick: () -> Unit,
@@ -179,7 +179,7 @@ private fun SocialSignButton( //TODO сделать автоматику цве�
 }
 
 @Composable
-fun GoogleBorderButton( //TODO добавить автоматизацию цвета
+fun GoogleBorderButton( //TODO add color automation
     text: String,
     image: ImageResource,
     onClick: () -> Unit,
@@ -246,7 +246,7 @@ fun GoogleBorderButton( //TODO добавить автоматизацию цв�
 }
 
 @Composable
-fun FacebookBorderButton( //TODO добавить автоматизацию цвета
+fun FacebookBorderButton( //TODO add color automation
     text: String,
     image: ImageResource,
     onClick: () -> Unit,
@@ -276,7 +276,7 @@ fun FacebookBorderButton( //TODO добавить автоматизацию ц�
             drawRoundRect(
                 brush = Brush.horizontalGradient(
                     colorStops = arrayOf(
-                        Zero to Cyan, // синий левый край
+                        Zero to Cyan,
                         blueStart.coerceIn(Zero, One) to Cyan,
                         (blueStart + BlendWidth).coerceIn(Zero, One) to Orange,
                         One to Orange

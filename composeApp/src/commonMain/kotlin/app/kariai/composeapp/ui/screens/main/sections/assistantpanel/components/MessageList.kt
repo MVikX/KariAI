@@ -24,7 +24,7 @@ fun MessageList(messages: List<ChatMessage>) {
                 UserMessageBubble(text = message.text)
             } else {
                 if (message.text == "TYPING") {
-                    // анимация точек
+                    // dots animation
                     AssistantMessageBubble {
                         TypingIndicator()
                     }

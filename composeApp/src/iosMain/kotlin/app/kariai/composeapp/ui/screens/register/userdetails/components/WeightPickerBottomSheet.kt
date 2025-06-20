@@ -8,6 +8,6 @@ actual fun WeightPickerBottomSheet(
     onConfirm: (Double) -> Unit,
     onDismiss: () -> Unit
 ) {
-    //TODO ЗАГЛУШКА ДЛЯ СПИСКА ВЕСА
+    // TODO: PLACEHOLDER FOR WEIGHT LIST
     onDismiss()
 }

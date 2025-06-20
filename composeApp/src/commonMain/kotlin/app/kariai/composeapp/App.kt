@@ -1,5 +1,5 @@
 package app.kariai.composeapp
-//TODO отключены экраны, кнопки входа через..., заглушки для локализации
+//TODO disabled screens, login buttons through..., localization stubs
 import androidx.compose.runtime.*
 import app.kariai.auth.service.AuthService
 import app.kariai.composeapp.localization.AppLanguage
@@ -32,10 +32,10 @@ enum class AppScreen {
 }
 
 class AppNavigationState {
-    //var currentScreen by mutableStateOf(AppScreen.LOGIN)
+    var currentScreen by mutableStateOf(AppScreen.LOGIN)
     //var currentScreen by mutableStateOf(AppScreen.REGISTER)
     //var currentScreen by mutableStateOf(AppScreen.USER_DETAILS)
-    var currentScreen by mutableStateOf(AppScreen.MAIN)
+    //var currentScreen by mutableStateOf(AppScreen.MAIN)
 }
 
 @Composable
@@ -65,7 +65,7 @@ fun App(
     }
 
     if (stringsProvider == null) {
-        // заглушка локалки
+        // localization stub
         androidx.compose.material3.Text("Loading...")
         return
     }

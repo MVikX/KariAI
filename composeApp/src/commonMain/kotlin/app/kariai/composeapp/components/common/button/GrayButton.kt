@@ -13,11 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-// размеры и радиус
+// sizes and corner radius
 private val GrayButtonHeight = 52.dp
 private val GrayButtonCornerRadius = 14.dp
 
-// альфа и стили
+// alpha and styles
 private const val GrayButtonBackgroundAlpha = 0.1f
 private const val GrayButtonTextAlpha = 0.5f
 private val GrayButtonFontSize = 16.sp

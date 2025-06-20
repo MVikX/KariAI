@@ -172,8 +172,8 @@ class UserDetailsViewModel(
 
             try {
                 authApi.completeUserDetails(userID, request)
-                println(" Успешно отправлено. Переходим на MAIN")
-                onSuccess() // ← вот это вызывает переход на экран
+                println("Successfully submitted. Navigating to MAIN")
+                onSuccess()
             } catch (e: Exception) {
                 println(" Failed to complete details: ${e.stackTraceToString()}")
                 onSuccess()

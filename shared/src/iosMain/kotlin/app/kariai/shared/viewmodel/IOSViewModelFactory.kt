@@ -1,5 +1,5 @@
 package app.kariai.shared.viewmodel
-//TODO нужно дописать фабрику
+//TODO needs factory implementation
 import app.kariai.shared.viewmodel.ViewModelFactory
 import app.kariai.storage.preferences.UserPreferencesImpl
 import app.kariai.storage.di.provideSettings

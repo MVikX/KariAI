@@ -13,12 +13,12 @@ import app.kariai.storage.preferences.UserPreferencesImpl
 class RegisterViewModel (
     private val userPreferences: UserPreferencesImpl
 ) {
-    private val _uiState = MutableStateFlow(app.kariai.shared.presentation.auth.register.RegisterUiState())
-    val uiState: StateFlow<app.kariai.shared.presentation.auth.register.RegisterUiState> = _uiState
+    private val _uiState = MutableStateFlow(RegisterUiState())
+    val uiState: StateFlow<RegisterUiState> = _uiState
 
     fun onEmailChanged(newEmail: String) {
         val isValid = EmailValidator.isValid(newEmail)
-        val error = if(isValid) app.kariai.shared.presentation.auth.validation.EmailError.None else app.kariai.shared.presentation.auth.validation.EmailError.InvalidFormat
+        val error = if(isValid) EmailError.None else EmailError.InvalidFormat
 
         _uiState.update {
             it.copy(
@@ -31,7 +31,7 @@ class RegisterViewModel (
 
     fun onPasswordChanged(newPassword: String) {
         val isStrong = PasswordValidator.isStrong(newPassword)
-        val error = if (isStrong) app.kariai.shared.presentation.auth.validation.PasswordError.None else app.kariai.shared.presentation.auth.validation.PasswordError.Weak
+        val error = if (isStrong) PasswordError.None else PasswordError.Weak
 
 
         _uiState.update {
@@ -46,8 +46,8 @@ class RegisterViewModel (
 
     fun onConfirmPasswordChanged (newPassword: String) {
         val isMatching = newPassword == _uiState.value.password
-        val error = if (isMatching) app.kariai.shared.presentation.auth.validation.ConfirmPasswordError.None else
-            app.kariai.shared.presentation.auth.validation.ConfirmPasswordError.NotMatching
+        val error = if (isMatching) ConfirmPasswordError.None else
+            ConfirmPasswordError.NotMatching
 
 
         _uiState.update {
@@ -65,7 +65,7 @@ class RegisterViewModel (
             it.copy(isLoading = true, errorMessage = null)
         }
 
-        // эмуляция "успешной регистрации"
+        // emulation of "successful registration"
         userPreferences.saveToken("fake_token_123")
 
         _uiState.update {
@@ -75,8 +75,6 @@ class RegisterViewModel (
                 isRegistered = true,
             )
         }
-
-        //onRegisterClick() перекидывание на мэин
     }
 
 
