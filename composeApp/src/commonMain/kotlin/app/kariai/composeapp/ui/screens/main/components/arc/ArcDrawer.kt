@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.main.components.arc
-//TODO добавить цвет в темы
+//TODO add color to themes
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush

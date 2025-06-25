@@ -82,7 +82,7 @@ fun Title() {
             modifier = Modifier.height(BoxHeight),
             contentAlignment = Alignment.BottomCenter
         ) {
-            // Анимированный робот
+            // Animated robot
             Image(
                 painter = painterResource(MR.images.kariai_robot),
                 contentDescription = null,
@@ -94,7 +94,7 @@ fun Title() {
                     }
             )
 
-            // Логотип
+            // Logo
             Image(
                 painter = painterResource(MR.images.main_logo),
                 contentDescription = null,

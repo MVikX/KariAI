@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.login.components
-/* TODO отключен пароль для входа
+/* TODO password input is disabled for login
 import androidx.compose.runtime.Composable
 import org.example.kariai.resources.GlassTextField
 import org.example.kariai.shared.presentation.auth.login.LoginUiState

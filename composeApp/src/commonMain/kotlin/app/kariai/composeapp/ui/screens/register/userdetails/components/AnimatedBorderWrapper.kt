@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 
 @Composable
-fun AnimatedBorderWrapper( //TODO автоматизацию цвета сделать
+fun AnimatedBorderWrapper( //TODO implement color automation
     modifier: Modifier = Modifier,
     cornerRadius: Dp = 28.dp,
     strokeWidth: Dp = 3.dp,

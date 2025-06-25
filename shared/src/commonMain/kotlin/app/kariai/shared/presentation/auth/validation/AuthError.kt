@@ -1,18 +1,18 @@
 package app.kariai.shared.presentation.auth.validation
 
 sealed class EmailError {
-    object None: app.kariai.shared.presentation.auth.validation.EmailError()
-    object InvalidFormat: app.kariai.shared.presentation.auth.validation.EmailError()
+    object None: EmailError()
+    object InvalidFormat: EmailError()
 }
 
 
 sealed class PasswordError {
-    object None: app.kariai.shared.presentation.auth.validation.PasswordError()
-    object Weak: app.kariai.shared.presentation.auth.validation.PasswordError()
+    object None: PasswordError()
+    object Weak: PasswordError()
 }
 
 
 sealed class ConfirmPasswordError {
-    object None: app.kariai.shared.presentation.auth.validation.ConfirmPasswordError()
-    object NotMatching: app.kariai.shared.presentation.auth.validation.ConfirmPasswordError()
+    object None: ConfirmPasswordError()
+    object NotMatching: ConfirmPasswordError()
 }

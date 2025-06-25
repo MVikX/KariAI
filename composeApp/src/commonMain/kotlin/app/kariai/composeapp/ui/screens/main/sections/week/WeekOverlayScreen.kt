@@ -24,7 +24,7 @@ fun WeekOverlayScreen(onClose: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = "week заглушка", //TODO заглушка графика истории
+                    text = "week stub", //TODO stub графика истории
                     style = MaterialTheme.typography.headlineLarge
                 )
             }

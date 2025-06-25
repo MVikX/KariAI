@@ -72,8 +72,6 @@ fun MainScreen() {
 
     val selectedTab = remember { mutableStateOf("home") }
 
-
-
     NutriTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -86,10 +84,10 @@ fun MainScreen() {
                         .padding(horizontal = HorizontalScreenPadding)
                         .systemBarsPadding()
                         .verticalScroll(rememberScrollState()),
-                    verticalArrangement = Arrangement.Top, // Прокручиваемый контент сверху
+                    verticalArrangement = Arrangement.Top, // Scrollable content starts at top
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    InfinityProgressArc( //TODO требует доработки логики и автоматики
+                    InfinityProgressArc( //TODO requires logic improvements and automation
                         spentKcal = nutritionStats.value.caloriesSpent,
                         burnedKcal = nutritionStats.value.caloriesBurned + 3000,
                         onClick = { offset ->
@@ -98,10 +96,8 @@ fun MainScreen() {
                         }
                     )
 
-
                     StatsGrid(
                         stats = nutritionStats.value,
-
                         onDistanceClick = { offset ->
                             distanceOffset.value = offset
                             distanceOverlayVisible.value = true
@@ -128,11 +124,9 @@ fun MainScreen() {
                         }
                     )
 
-
                     Spacer(modifier = Modifier.height(SectionSpacing))
 
-
-                    WeekCircleSummaryRow(//TODO требует логики и исправлений
+                    WeekCircleSummaryRow( //TODO needs logic and fixes
                         spentList = listOf(0.4f, 0.6f, 0.3f, 0.5f, 0.8f, 0.9f, 0.2f),
                         eatenList = listOf(0.6f, 0.4f, 0.7f, 0.5f, 0.2f, 0.1f, 0.8f),
                         onClick = { offset ->
@@ -141,22 +135,19 @@ fun MainScreen() {
                         }
                     )
 
-
                     Spacer(modifier = Modifier.height(SectionSpacing))
 
-
-                    //TODO демо асистент
+                    //TODO demo assistant
                     AssistantPanel(onClick = {
                         assistantOverlayVisible.value = true
                     })
                 }
 
-                // Нижний бар, растягиваемый по ширине
+                // Bottom bar stretched across width
                 val transition = updateTransition(targetState = isMenuVisible.value, label = "menu_bar_transition")
                 val barOffset by transition.animateDp(label = "barOffset") {
-                    if (it) BottomMenuOffsetShown else BottomMenuOffsetHidden // выезжает вверх, чтобы освободить место меню
+                    if (it) BottomMenuOffsetShown else BottomMenuOffsetHidden // slides up to make room for menu
                 }
-
 
                 if (isMenuVisible.value) {
                     BottomMenuSheet(
@@ -169,7 +160,6 @@ fun MainScreen() {
                         MenuScreen()
                     }
                 }
-
 
                 Box(
                     modifier = Modifier
@@ -185,13 +175,11 @@ fun MainScreen() {
                         },
                         onAiFoodClick = { selectedTab.value = "ai" },
                         isEnabled = !isMenuVisible.value,
-                        selectedTab = selectedTab.value //
+                        selectedTab = selectedTab.value // selected state
                     )
                 }
 
-
-
-                // Оверлеи
+                // Overlays
                 ArcOverlay(
                     visible = arcOverlayVisible.value,
                     offset = arcClickOffset.value,
@@ -212,13 +200,11 @@ fun MainScreen() {
                     onDismiss = { stepsOverlayVisible.value = false }
                 )
 
-
                 GoalsOverlay(
                     visible = goalsOverlayVisible.value,
                     offset = goalsOffset.value,
                     onDismiss = { goalsOverlayVisible.value = false }
                 )
-
 
                 CarbsOverlay(
                     visible = carbsOverlayVisible.value,
@@ -226,13 +212,11 @@ fun MainScreen() {
                     onDismiss = { carbsOverlayVisible.value = false }
                 )
 
-
                 ProteinOverlay(
                     visible = proteinOverlayVisible.value,
                     offset = proteinOffset.value,
                     onDismiss = { proteinOverlayVisible.value = false }
                 )
-
 
                 FatOverlay(
                     visible = fatOverlayVisible.value,
@@ -240,13 +224,11 @@ fun MainScreen() {
                     onDismiss = { fatOverlayVisible.value = false }
                 )
 
-
                 WeekOverlay(
                     visible = weekOverlayVisible.value,
                     offset = weekOffset.value,
                     onDismiss = { weekOverlayVisible.value = false }
                 )
-
 
                 AssistantOverlay(
                     visible = assistantOverlayVisible.value,

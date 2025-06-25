@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.main.sections.arc.components
-//TODO требует корратировки цвета, добовление автоцвета
+//TODO requires color adjustment, add auto color
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box

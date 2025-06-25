@@ -24,7 +24,7 @@ fun DistanceOverlayScreen(onClose: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = "дистанция заглушка", //TODO заглушка дистаний проеденых
+                    text = "дистанция stub", //TODO stub дистаний проеденых
                     style = MaterialTheme.typography.headlineLarge
                 )
             }

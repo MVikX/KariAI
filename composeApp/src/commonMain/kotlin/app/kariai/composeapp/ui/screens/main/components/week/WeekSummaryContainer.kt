@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.main.components.week
-//TODO добавить логику нажатия
+//TODO add click logic
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box

@@ -24,7 +24,7 @@ fun ProteinOverlayScreen(onClose: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = "протеин заглушка", //TODO заглушка протеина
+                    text = "протеин stub", //TODO stub протеина
                     style = MaterialTheme.typography.headlineLarge
                 )
             }

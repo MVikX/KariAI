@@ -24,7 +24,7 @@ fun ActivityOverlayScreen(onClose: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = "активность заглушка", //TODO заглушка шагов
+                    text = "активность stub", //TODO stub шагов
                     style = MaterialTheme.typography.headlineLarge
                 )
             }

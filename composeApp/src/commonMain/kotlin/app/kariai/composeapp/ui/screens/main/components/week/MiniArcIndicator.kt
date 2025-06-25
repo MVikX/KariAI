@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.main.components.week
-//TODO сделать автоматизацию цвета + логика
+//TODO implement color automation + logic
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
@@ -31,8 +31,8 @@ private const val LabelTextAlpha = 0.85f
 @Composable
 fun MiniArcIndicator(
     modifier: Modifier = Modifier,
-    spentProgress: Float, // от 0 до 1
-    eatenProgress: Float, // от 0 до 1
+    spentProgress: Float, // from 0 to 1
+    eatenProgress: Float, // from 0 to 1
     dayLabel: String,
     size: Float = DefaultIndicatorSize
 ) {
@@ -52,7 +52,7 @@ fun MiniArcIndicator(
             val spentAngle = spent * FullCircleAngle
             val eatenAngle = eaten * FullCircleAngle
 
-            // фон
+            // background
             drawArc(
                 color = BackgroundArcColor,
                 startAngle = ZeroFloat,
@@ -61,7 +61,7 @@ fun MiniArcIndicator(
                 style = Stroke(strokeWidthPx)
             )
 
-            // потрачено (синий)
+            // spent (blue)
             drawArc(
                 color = SpentColor,
                 startAngle = StartAngle - spentAngle,
@@ -70,7 +70,7 @@ fun MiniArcIndicator(
                 style = Stroke(strokeWidthPx)
             )
 
-            // съедено (ораньжевый)
+            // eaten (orange)
             drawArc(
                 color = EatenColor,
                 startAngle = StartAngle,

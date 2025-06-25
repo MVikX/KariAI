@@ -53,7 +53,7 @@ fun UserDetailsScreen(
                     val textsize = 34.sp
 
                     Spacer(modifier = Modifier.height(30.dp))
-                    // заголовок
+                    // title
                     Text(
                         text = t("profile.title_name_user1"),
                         style = MaterialTheme.typography.headlineMedium.copy(
@@ -84,13 +84,13 @@ fun UserDetailsScreen(
                 ) {
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    // Имя
+                    // Name
                     NameInput(
                         name = uiState.userName,
                         onClick = { viewModel.showNameDialog() }
                     )
 
-                    // Дата рождения
+                    // Date of birth
                     BirthDateSelector(
                         day = uiState.birthDay,
                         month = uiState.birthMonth,
@@ -98,25 +98,25 @@ fun UserDetailsScreen(
                         onClick = { viewModel.showBirthDateDialog() }
                     )
 
-                    // Пол
+                    // Gender
                     GenderSelector(
                         selectedGender = uiState.gender,
                         onGenderSelected = { viewModel.updateGender(it) }
                     )
 
-                    // Рост
+                    // Height
                     HeightSelector(
                         height = uiState.height,
                         onClick = { viewModel.showHeightPicker() }
                     )
 
-
+                    // Weight
                     WeightSelector(
                         weight = uiState.weight,
                         onClick = { viewModel.showWeightPicker() }
                     )
 
-                    // Аллергии
+                    // Allergies
                     SearchField(
                         label = t("profile.allergies"),
                         value = uiState.allergies,
@@ -124,7 +124,7 @@ fun UserDetailsScreen(
                         image = MR.images.alerg,
                     )
 
-                    // Непереносимости
+                    // Intolerances
                     SearchField(
                         label = t("profile.intolerances"),
                         value = uiState.intolerances,

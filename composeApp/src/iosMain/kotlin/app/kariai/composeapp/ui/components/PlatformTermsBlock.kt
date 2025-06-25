@@ -9,5 +9,5 @@ actual fun PlatformTermsBlock(
     onTermsClick: () -> Unit,
     onPrivacyClick: () -> Unit
 ) {
-    //TODO разработка политики конфендециаольности + условия на айфоне
+    //TODO develop privacy policy + terms of use for iPhone
 }

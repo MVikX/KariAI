@@ -1,10 +1,11 @@
 package app.kariai.composeapp.ui.screens.main.sections.arc
-//TODO пределать значки картинок + сделать автоматизацию + локализацию
+
+//TODO rework image icons + implement automation + add localization
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
@@ -17,6 +18,9 @@ import app.kariai.composeapp.ui.screens.main.sections.arc.components.ArcScreenCo
 import app.kariai.composeapp.ui.screens.main.sections.arc.components.BurnedItem
 import app.kariai.composeapp.ui.screens.main.sections.arc.components.FoodItem
 import app.kariai.composeapp.ui.screens.main.components.arc.InfinityProgressArc
+
+import app.kariai.shared.MR
+import dev.icerock.moko.resources.compose.painterResource
 
 // layout values
 private val HorizontalScreenPadding = 24.dp
@@ -65,24 +69,24 @@ fun ArcOverlayScreen(
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "Съеденные", // TODO: локализовать
+                                text = "Eaten", // TODO: localize
                                 style = MaterialTheme.typography.titleMedium
                             )
                             Spacer(Modifier.height(ColumnSpacing))
 
                             FoodItem(
-                                icon = Icons.Default.Search, // TODO: заменить на кастом
-                                name = "Гречка",
+                                icon = MR.images.fat, // TODO: replace with custom, localize
+                                name = "Buckwheat",
                                 kcal = 250
                             )
                             FoodItem(
-                                icon = Icons.Default.Search,
-                                name = "Курица",
+                                icon = MR.images.fat, // TODO: replace with custom, localize
+                                name = "Chicken",
                                 kcal = 350
                             )
                             FoodItem(
-                                icon = Icons.Default.Search,
-                                name = "Молоко",
+                                icon = MR.images.fat, // TODO: replace with custom, localize
+                                name = "Milk",
                                 kcal = 150
                             )
                         }
@@ -91,19 +95,19 @@ fun ArcOverlayScreen(
 
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "Потраченные", // TODO: локализовать
+                                text = "Burned", // TODO: localize
                                 style = MaterialTheme.typography.titleMedium
                             )
                             Spacer(Modifier.height(ColumnSpacing))
 
                             BurnedItem(
-                                icon = Icons.Default.Search,
-                                name = "Базовый обмен",
+                                icon = MR.images.fat, // TODO: replace with custom, localize
+                                name = "Basal Metabolism",
                                 kcal = 1800
                             )
                             BurnedItem(
-                                icon = Icons.Default.Search,
-                                name = "Тренировки",
+                                icon = MR.images.fat, // TODO: replace with custom, localize
+                                name = "Training",
                                 kcal = 1200
                             )
                         }
@@ -113,9 +117,9 @@ fun ArcOverlayScreen(
                 Spacer(modifier = Modifier.height(BottomSpacerHeight))
 
                 IconButton(onClick = onClose) {
-                    Icon(
-                        imageVector = Icons.Default.Close,
-                        contentDescription = "Закрыть" // TODO: локализовать
+                    Image(
+                        painter = painterResource(MR.images.fat), // TODO: replace with custom
+                        contentDescription = "Close" // TODO: localize
                     )
                 }
             }

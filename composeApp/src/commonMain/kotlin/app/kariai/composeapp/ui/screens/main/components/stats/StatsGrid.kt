@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.main.components.stats
-//TODO ТРЕБУЕТ ЛОКАЛИЗАЦИИ + Базу + Логику
+//TODO REQUIRES LOCALIZATION + Database + Logic
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

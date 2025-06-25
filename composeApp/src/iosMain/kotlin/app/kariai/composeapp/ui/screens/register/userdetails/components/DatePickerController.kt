@@ -7,6 +7,6 @@ actual class DatePickerController {
         initialDay: Int,
         onDateSelected: (year: Int, month: Int, day: Int) -> Unit
     ) {
-        // TODO: ТРЕБУЕТСЯ СОЗДАНИЕ КОЛЕНДАРЯ НА IOS
+        // TODO: CALENDAR IMPLEMENTATION REQUIRED ON IOS
     }
 }

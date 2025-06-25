@@ -8,5 +8,5 @@ actual fun HeightPickerBottomSheet(
     onConfirm: (Int) -> Unit,
     onDismiss: () -> Unit
 ) {
-    //TODO РЕАЛИЗАЦИЯ РОСТА НА ИОС
+    // TODO: HEIGHT IMPLEMENTATION ON IOS
 }

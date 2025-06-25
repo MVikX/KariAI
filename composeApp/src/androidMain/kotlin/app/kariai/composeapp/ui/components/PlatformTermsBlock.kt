@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.components
-//TODO баг с надписями политики
+//TODO bug with policy labels
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Checkbox

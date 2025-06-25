@@ -1,5 +1,5 @@
 package app.kariai.composeapp.ui.screens.register.userdetails.components
-// TODO баганная реализация колеса (-1 при старте) Добавить общую тему цвета
+// TODO buggy wheel implementation (-1 at start) Add shared color theme
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 
-// UI - размеры, отступы, шрифты
+// UI - sizes, paddings, fonts
 private val WheelItemHeight = 50.dp
 private val WheelWidth = 100.dp
 private val ArraSpacedBy = 0.dp
@@ -29,16 +29,16 @@ private val ArraSpacedBy = 0.dp
 private val SelectedFontSize = 30.sp
 private val UnselectedFontSize = 18.sp
 
-// цвета и альфа
+// colors and alpha
 private const val UnselectedTextAlpha = 0.4f
 private const val ShadowAlpha = 0.4f
 
-// логика расчётов и поведения
+// logic: calculations and behavior
 private const val VisibleItemsCount = 7
 private const val CenterPositionDivisor = 2
 private const val CenterOffsetFraction = 0.5f
 
-// прокрутка и инициализация
+// scroll and initialization
 private const val InitialScrollDelayMs = 100
 private const val NotFoundIndex = -1
 private const val ScrollToStartIndex = 0
@@ -71,7 +71,7 @@ actual fun <T> WheelPicker(
         }
     }
 
-    // определение текущего центрального индекса
+    // determine current center index
     val centerIndex by remember {
         derivedStateOf {
             val exactOffset = listState.firstVisibleItemScrollOffset / itemHeightPx
@@ -85,7 +85,7 @@ actual fun <T> WheelPicker(
         }
     }
 
-    // защита от выхода за границы при прокрутке
+    // prevent out-of-bound scroll when snapping ends
     LaunchedEffect(listState.isScrollInProgress) {
         if (!listState.isScrollInProgress && (centerIndex < ScrollToStartIndex || centerIndex > items.lastIndex)) {
             val safeIndex = centerIndex.coerceIn(ScrollToStartIndex, items.lastIndex)
@@ -126,7 +126,7 @@ actual fun <T> WheelPicker(
             }
         }
 
-        // затемнение сверху
+        // top shadow
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -139,7 +139,7 @@ actual fun <T> WheelPicker(
                 )
         )
 
-        // затемнение снизу
+        // bottom shadow
         Box(
             modifier = Modifier
                 .fillMaxWidth()
