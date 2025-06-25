@@ -1,7 +1,16 @@
+
 # 🧠 KariAI – Smart AI Assistant for Nutrition & Health
 
 **KariAI** is a cross-platform smart assistant that helps users track nutrition, health data, and fitness progress — with a touch of AI personalization.  
 Built using Kotlin Multiplatform (KMP), the app runs on both **Android** and **iOS** from a shared codebase.
+
+## 📸 Screenshots
+
+<img src="screenshots/login_screen.png" width="350"/>
+<img src="screenshots/user_details.png" width="350"/>
+<img src="screenshots/main_screen.png" width="350"/>
+<img src="screenshots/chat_screen.png" width="350"/>
+
 
 🌐 Website: [https://kariai.app](https://kariai.app)  
 👤 Author: [MVikX](https://github.com/MVikX)  
@@ -115,7 +124,6 @@ The project is not intended for production or public release at this stage. Use 
 
 This project is **closed-source** and **proprietary**.  
 All rights reserved © 2025 **MVikX**.
-
 > Unauthorized use, redistribution, or modification of any part of the codebase, designs, or assets is strictly prohibited.
 
 For licensing or collaboration inquiries, visit [https://kariai.app](https://kariai.app)
